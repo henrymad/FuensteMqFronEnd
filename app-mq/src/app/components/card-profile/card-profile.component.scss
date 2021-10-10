@@ -1,0 +1,185 @@
+.card {
+  max-height: 900px;
+  border-bottom-left-radius: 1.25rem 1.25rem ;
+  border-bottom-right-radius: 1.25rem 1.25rem ;
+  border-top-right-radius: 0rem 0rem;
+  border-top-left-radius: 0rem 0rem;
+  margin: 0rem;
+}
+
+.card-content {
+  width: 100% !important;
+  display: flex !important;
+  height: 100%!important;
+  flex-direction: column;
+  justify-content: space-around; 
+}
+
+.profile {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: content-box!important;
+  margin-bottom: 20px;
+}
+
+.header{
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 0rem;
+  padding-right: 0rem;
+  padding-top: 2rem;
+}
+
+.profile-font {
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  font-size: 14px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+  margin-bottom: 41px;
+  margin-top: 41px;
+}
+
+.photo {
+  width: 9rem;
+  height: 9rem;
+  border: 0.25rem solid #ffff;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-size: 9rem;
+  background-position: 50%;
+  margin-bottom: 20px;
+}
+
+.name{
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.role {
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.content-body{
+  display: flex;
+  justify-content: space-around;
+  height: 100%!important;
+  border-top: 1px solid;
+}
+
+.content-hours{
+  width: 50%;
+  height: 100%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-right: 1px solid;
+  display: flex;
+  justify-content: center;
+}
+
+.content-data{
+  width: 50%;
+  height: 100%;
+  padding-top: 1rem;
+  padding-bottom: 1rem
+}
+
+@media(min-width:800px){
+
+  .profile-font {
+    font-style: normal;
+    font-feature-settings: normal;
+    font-variant: normal;
+    font-weight: normal;
+    font-size: 17px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 31px;
+    margin-bottom: 31px;;
+  }
+
+  .name{
+    font-style: normal;
+    font-feature-settings: normal;
+    font-variant: normal;
+    font-weight: 600;
+    font-size: 21px;
+  }
+  .role {
+    font-style: normal;
+    font-feature-settings: normal;
+    font-variant: normal;
+    font-weight: normal;
+    font-size: 16px;
+    margin-top: 7px;
+  }
+
+}
+
+@media(max-height:680px){
+  .card-content {
+    width: 100% !important;
+    display: flex !important;
+    height: 100%!important;
+    flex-direction: column;
+    justify-content: space-around; 
+  }
+  
+  .profile {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: content-box!important;
+    margin-bottom: 20px;
+  }
+  
+  .header{
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 0rem;
+    padding-right: 0rem;
+    padding-top: 1rem;
+  }
+    
+  .content {
+    width: 100%;
+    display: flex;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+    margin-bottom: 21px;
+    margin-top: 21px;
+  }
+  
+  .photo {
+    width: 9rem;
+    height: 9rem;
+    border: 0.25rem solid #ffff;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-size: 9rem;
+    background-position: 50%;
+    margin-bottom: 10px;
+  }
+}

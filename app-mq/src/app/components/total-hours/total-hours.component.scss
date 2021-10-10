@@ -1,0 +1,19 @@
+.content-hours {
+  height: 97px;
+  width: 97px;
+  border-radius: 50%;
+  background: #ffff;
+  display: flex;
+  justify-content: center;
+  align-content: end;
+  align-items: center;
+  flex-direction: column;
+}
+
+.hours {
+  font-size: 50px;
+  height: 46px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}

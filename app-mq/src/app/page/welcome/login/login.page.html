@@ -1,0 +1,38 @@
+<ion-content>
+  <div class="welcom-img">
+    <ion-button 
+      color="#0514AF" 
+      style="margin-top: 1rem;"
+      routerLink="/welcome"
+    >
+      <ion-icon name="chevron-back-outline" ></ion-icon>
+    </ion-button>
+      <div class="welcome-content">
+        <span class="letter-welcome mq-font-bold">WELCOME</span>
+        <ion-item class="ion-margin-bottom"  color="button-login">
+          <ion-icon name="person-circle-outline"></ion-icon>
+          <ion-input type="text" [(ngModel)]="user.userName" placeholder="   Username"></ion-input>
+        </ion-item>
+        <ion-item class="ion-margin-bottom" color="button-login">
+          <ion-icon name="lock-closed-outline" ></ion-icon>
+          <ion-input type="password" [(ngModel)]="user.password" placeholder="   Password"></ion-input>
+        </ion-item>
+        <br>
+        <ion-button 
+          type="submit"
+          [ngClass]="{'button-style mq-font-bold':unActive(), 'button-style-activate mq-font-bold':activate()}"  
+          expand="block" 
+          fill="outline" 
+          (click)="login(user.userName, user.password)"
+        > 
+          LOGIN
+        </ion-button>
+      </div>
+      <br>
+      <br>
+      <br>
+      <div class="admin-style">
+        <span class="letter-admin">Create account</span>
+      </div>
+  </div>
+</ion-content>

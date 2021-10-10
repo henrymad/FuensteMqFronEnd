@@ -1,0 +1,28 @@
+.day-week {
+  height:65px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #FFFFFF;
+  background: #05108A;
+  justify-content: center;
+}
+
+.date {
+  height:65px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #FFFFFF;
+  background: #040D6C;
+  justify-content: center;
+}
+
+.hours {
+  height:65px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #FFFFFF;
+  justify-content: center;
+  background: #030A59;
+  color: #FFFFFF;
+  font-size: 15px;
+}

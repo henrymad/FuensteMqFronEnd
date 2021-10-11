@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Employee, ResponseEvent } from 'src/app/class/employee';
+import { Employee, ResponseClocOut, ResponseEvent } from 'src/app/class/employee';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { Storage } from '@capacitor/storage';
 
@@ -18,6 +18,8 @@ export class EmployeePage implements OnInit {
   statusStart: boolean = true;
   statusIn: boolean = false;
   statusOut:boolean = false;
+
+  hoursWorked:number = 0;
  
   constructor(
     private employeeService: EmployeeService,
@@ -38,13 +40,13 @@ export class EmployeePage implements OnInit {
         console.log(response.data);
         this.employee.name = response.data.name;
         this.employee.role = this.employee.upperCaseEmployee(response.data.role);
+        this.employee.position = this.employee.upperCaseEmployee(response.data.position);
         this.employee.hours = response.data.hours;
         this.employee.photo = this.employee.convertBase64ToJpg(response.data.avatar);
         this.employee.weekHours = response.data.weekHours;
         this.employee.weeklyTotalHours = response.data.weeklyTotalHours;
       });
-    this.employee.hoursWorked = 0;
-    this.employee.isMensageActive = true;
+    
   }
 
 
@@ -73,12 +75,18 @@ export class EmployeePage implements OnInit {
     this.dataClockOut = data;
   }
 
-  endShift(state:boolean):void {
+  endShift(state:ResponseClocOut):void {
     this.statusOut = false;
-    this.statusStart = state;
+    this.statusStart = state.state;
+    this.employee.hoursWorked = state.data;
+    this.employee.isMensageActive = true;
+    this.messange();
   }
-
-  
-
+  messange(): void{
+    let time: number = 3500;
+    setTimeout(() => {
+      this.employee.isMensageActive = false;
+    }, time)
+  }
 
 }

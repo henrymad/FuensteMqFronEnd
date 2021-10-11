@@ -9,7 +9,7 @@ const routes: Routes = [
     component: EmployeePage
   },
   {
-    path: 'hours',
+    path: 'hours/:week',
     loadChildren: () => import('./hours/hours.module').then( m => m.HoursPageModule)
   }
 ];

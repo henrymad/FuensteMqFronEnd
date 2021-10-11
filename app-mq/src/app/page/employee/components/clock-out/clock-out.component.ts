@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ClockOutDTO, ResponseEvent } from 'src/app/class/employee';
+import { ClockOutDTO, ResponseClocOut, ResponseEvent } from 'src/app/class/employee';
 import { Geolocation } from '@capacitor/geolocation';
 import { ClockOutService } from 'src/app/services/clock-out.service';
 
@@ -10,11 +10,12 @@ import { ClockOutService } from 'src/app/services/clock-out.service';
 })
 export class ClockOutComponent implements OnInit {
 
-  @Output() stateEvent = new EventEmitter<boolean>();
+  @Output() stateEvent = new EventEmitter<ResponseClocOut>();
   @Input() data: ResponseEvent = new ResponseEvent();
   @Input() token:string;
 
   dataCLockout: ClockOutDTO = new ClockOutDTO();
+  response: ResponseClocOut = new ResponseClocOut();
   
   constructor(private clockoutService: ClockOutService) { }
 
@@ -27,6 +28,16 @@ export class ClockOutComponent implements OnInit {
   }
 
   async endShift(){
+    await this.setData();
+    this.stateEvent.emit(this.response);
+  }
+
+  getDateEnd():string{
+    const now = new Date();
+    return now.toISOString();
+  }
+
+  async setData():Promise<void> {
     const coordinates = await Geolocation.getCurrentPosition();
     this.dataCLockout.username = this.data.responseDTO.username;
     this.dataCLockout.buildingid = this.data.responseDTO.buildingid;
@@ -38,14 +49,13 @@ export class ClockOutComponent implements OnInit {
     this.dataCLockout.longitudeEndShift = coordinates.coords.longitude.toString(); 
     this.dataCLockout.timestampId = this.data.timestampId;
     this.clockoutService.clockOut(this.dataCLockout, this.token)
-      .subscribe(response => console.log(response));
-    const STATE = true;
-    this.stateEvent.emit(STATE);
-  }
+      .subscribe(res => {
+        this.response.data = res.data;
+        console.log(this.response.data);
+        });
+    this.response.state = true;
+    //return this.dataCLockout;
 
-  getDateEnd():string{
-    const now = new Date();
-    return now.toISOString();
   }
 
 }

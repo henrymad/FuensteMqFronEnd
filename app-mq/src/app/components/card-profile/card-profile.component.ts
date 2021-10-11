@@ -11,6 +11,7 @@ export class CardProfileComponent implements OnInit {
   @Input() nameUser: string;
   @Input() roleUser: string;
   @Input() nameStyle: string; 
+  @Input() positionUser:string;
 
   constructor() { }
 

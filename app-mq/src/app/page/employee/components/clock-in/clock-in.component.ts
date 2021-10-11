@@ -15,7 +15,7 @@ export class ClockInComponent implements OnInit {
 
   @Output() dataEvent = new EventEmitter<ResponseEvent>();
   @Input() token:string;
-  @Input() id: number;
+  @Input() userName: string;
 
   data: ResponseEvent = new ResponseEvent(); 
   building: Building = new Building();
@@ -45,21 +45,12 @@ export class ClockInComponent implements OnInit {
 
   async startShift(){
     if(this.data.responseDTO.buildingid !=null && this.data.responseDTO.buildingid != undefined ){
-      const coordinates = await Geolocation.getCurrentPosition();
-      this.data.responseDTO.username = this.id;
-      this.data.responseDTO.dateStartShift = this.getDateStart();
-      this.data.responseDTO.latitudeStartShift = coordinates.coords.latitude.toString();
-      this.data.responseDTO.longitudeStartShift = coordinates.coords.longitude.toString();
-      console.log(this.data.responseDTO);
-      this.clockInService.clockIn(this.data.responseDTO, this.token)
-        .subscribe(response => {
-          this.data.timestampId = response.data;
-          console.log(response);
-        });
-      this.data.status = true;
-      this.dataEvent.emit(this.data);
+      const data = await this.setData();
+      this.dataEvent.emit(data);
     }
-    this.presentAlert();
+    else {
+      this.presentAlert();
+    }  
   }
 
   getDateStart(): string{
@@ -69,7 +60,6 @@ export class ClockInComponent implements OnInit {
 
   async presentAlert() {
     const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
       header: 'Alert',
       subHeader: 'Subtitle',
       message: 'This is an alert message.',
@@ -78,7 +68,19 @@ export class ClockInComponent implements OnInit {
     await alert.present();
   }
 
-
-
-
+  async setData(): Promise<ResponseEvent>{
+    const coordinates = await Geolocation.getCurrentPosition();
+    this.data.responseDTO.username = this.userName;
+    this.data.responseDTO.dateStartShift = this.getDateStart();
+    this.data.responseDTO.latitudeStartShift = coordinates.coords.latitude.toString();
+    this.data.responseDTO.longitudeStartShift = coordinates.coords.longitude.toString();
+    console.log(this.data.responseDTO);
+    this.clockInService.clockIn(this.data.responseDTO, this.token)
+      .subscribe(response => {
+        this.data.timestampId = response.data;
+        console.log(response);
+      });
+      this.data.status = true;
+      return this.data;
+  }
 }

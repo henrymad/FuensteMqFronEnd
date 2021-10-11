@@ -1,42 +1,22 @@
 <ion-content>
-  <div style="width:100%;height:370px;background:#343342">
-    <div style="width: 100%;padding-top: 40px;align-items:center;display:flex; justify-content:center">
-      <ion-buttons (click)="back()" style="display: flex;
-      position: absolute;
-      left: 0;
-      right: 0;
-      margin-left: 26px;">
-        <ion-icon role="button" name="chevron-back-outline" style="width: 20px;height: 20px;color: #ffff;"></ion-icon>
+  <div class="content-data ">
+    <div class="content-header">
+      <ion-buttons class="content-button">
+        <ion-back-button 
+          mode = "ios"
+          text="" 
+          defaultHref="/"
+          color="light"
+        >
+        </ion-back-button>
       </ion-buttons>
-      <span class="mq-font-bold"style="color: #ffff;font-size:19px">Time management</span>
+      <span class="mq-font-bold text-time">Time management</span>
     </div>
-    <div style="display: flex;justify-content:center;color: #ffff;font-size: 23px;">
+    <div class="text-week">
       <span>week hours</span>
     </div>
-    <div style="display: flex;justify-content:space-around;margin-top: 60px;align-items: center;">
-      <div style="height: 160px;width: 160px;border-radius: 50%;background: #ffff;display: flex;
-          justify-content: center;
-          align-content: end;
-          align-items: center;
-          flex-direction: column;"
-        >
-          <span style="color:#030A5B">Total</span>
-          <div>
-            <span class="mq-text-color mq-font-bold" style="font-size: 96px;
-            height: 85px;
-            justify-content: center;
-            display: flex;
-            align-items: center;"
-          >
-            47
-          </span>
-          </div>
-          <span class="mq-text-color" style="height: 17px;
-            font-size: 14px;"
-          >
-            Hours
-          </span>
-        </div>
+    <div class="content-date-hours">
+      <hours [hours] = "weekHours"></hours>
       <data-time
           week = "WED"
           date = "28"
@@ -48,52 +28,12 @@
         </data-time>
     </div>
   </div>
-<ion-grid style="padding:0px"> 
-  <ion-row style="padding:0px; border: 0px solid black"> 
-    <ion-col style="padding:0px" >
-     <ion-row *ngFor = "let day of days" 
-      class="day-week">
-        <span style="color: #ffff;font-size: 14px;">{{day}}</span>
-     </ion-row>
-    </ion-col>
-    <ion-col style="padding:0px" >
-      <ion-row *ngFor = "let day of date" 
-       class="date">
-         <span style="color: #ffff;font-size: 14px;">{{day}}</span>
-      </ion-row>
-     </ion-col>
-    <ion-col style="padding:0px">
-      <ion-row *ngFor = "let hour of hours" 
-      class="hours mq-font-bold">
-       320 HOURS
-     </ion-row>
-    </ion-col>
-  </ion-row>
-</ion-grid>
-<br>
-<ion-grid style="padding:0px"> 
-  <ion-row style="padding:0px; border: 0px solid black"> 
-    <ion-col style="padding:0px" >
-     <ion-row *ngFor = "let day of days" 
-      class="day-week">
-        <span style="color: #ffff;font-size: 14px;">{{day}}</span>
-     </ion-row>
-    </ion-col>
-    <ion-col style="padding:0px" >
-      <ion-row *ngFor = "let day of date" 
-       class="date">
-         <span style="color: #ffff;font-size: 14px;">{{day}}</span>
-      </ion-row>
-     </ion-col>
-    <ion-col style="padding:0px">
-      <ion-row *ngFor = "let hour of hours" 
-      class="hours mq-font-bold">
-       320 HOURS
-     </ion-row>
-    </ion-col>
-  </ion-row>
-</ion-grid>
-
+<div *ngIf="isFirst">
+  <table-hours [weeksDetail]="firstWeek"></table-hours>
+</div>
+<div *ngIf="isSecond">
+  <table-hours [weeksDetail]="secondWeek"></table-hours>
+</div>
 </ion-content>
 
 <ion-tab-bar slot="bottom" class="mq-tab"></ion-tab-bar>

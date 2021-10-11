@@ -6,6 +6,7 @@
         [photo] = "employee.photo" 
         [nameUser] = "employee.name"
         [roleUser] = "employee.role" 
+        [positionUser] = "employee.position"
        >
        <total-hours 
         [hours] = "employee.hours"
@@ -38,6 +39,7 @@
         (stateEvent)="start($event)"
         [weeklyHours] = "employee.weekHours"
         [weeklyTotalHours] = "employee.weeklyTotalHours"
+        [userName] = "employee.userName"
       >
       </start-shift>
     </div>
@@ -45,7 +47,7 @@
       <clock-in 
         (dataEvent)="startShift($event)"
         [token] = "employee.token"
-        [id] = "employee.id"
+        [userName] = "employee.userName"
       >
       </clock-in>
     </div>

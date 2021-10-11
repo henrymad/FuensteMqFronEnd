@@ -15,6 +15,8 @@ export class Employee {
   public role:string;
   public photo:string;
   public userName:string;
+  public password:string;
+  public position:string;
   public token:string;
   public hours: number;
   public weekHours:number;
@@ -26,7 +28,7 @@ export class Employee {
   public positionStart: Coordenadas = new Coordenadas();
   public positionEnd: Coordenadas = new Coordenadas();
   public buildingId:number;
-
+  public week:number;
 
   public upperCaseEmployee(nameEmploye:string): string{
     const firstUpperCase = nameEmploye.charAt(0).toUpperCase();
@@ -49,7 +51,7 @@ export class Building {
 }
 
 export class ClockInDTO {
-  public username: number;
+  public username: string;
   public buildingid:number;
   public dateStartShift: string;
   public latitudeStartShift:string;
@@ -60,7 +62,7 @@ export class ClockInDTO {
 }
 
 export class ClockOutDTO{
-  public username: number;
+  public username: string;
   public buildingid:number;
   public dateStartShift: string;
   public latitudeStartShift:string;
@@ -76,4 +78,37 @@ export class ResponseEvent {
   public nameBuilding:string;
   public status:boolean;
   public responseDTO:ClockInDTO = new ClockInDTO();
+}
+
+export class DetailWeek {
+    parameterId: number;
+    monday: number;
+    mondayDate: string;
+    mondayApprove:any 
+    tuesday: number;
+    tuesdayDate: string;
+    tuesdayApprove: any;
+    wednesday: number;
+    wednesdayDate: string;
+    wednesdayApprove: any;
+    thursday: number;
+    thursdayDate: string;
+    thursdayApprove: any;
+    friday: number;
+    fridayDate: string;
+    fridayApprove: any;
+    saturday: number;
+    saturdayDate: string;
+    saturdayApprove: any;
+    sunday: number;
+    sundayDate: any;
+    sundayApprove: any;
+    listTimestampId: Array<any>;
+    startWeekDate: any;
+    endWeekDate: any;
+}
+
+export class ResponseClocOut{
+  public state:boolean;
+  public data:number;
 }

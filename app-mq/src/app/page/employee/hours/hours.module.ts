@@ -8,6 +8,7 @@ import { HoursPageRoutingModule } from './hours-routing.module';
 
 import { HoursPage } from './hours.page';
 import { DataTimeComponentModule } from 'src/app/components/data-time/data-time.module';
+import { ComponentsModule } from './components/component.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { DataTimeComponentModule } from 'src/app/components/data-time/data-time.
     FormsModule,
     IonicModule,
     HoursPageRoutingModule,
-    DataTimeComponentModule
+    DataTimeComponentModule,
+    ComponentsModule,
   ],
   declarations: [HoursPage]
 })

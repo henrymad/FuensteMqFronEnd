@@ -5,17 +5,23 @@
       style="margin-top: 1rem;"
       routerLink="/welcome"
     >
-      <ion-icon name="chevron-back-outline" ></ion-icon>
+      <ion-back-button 
+        mode = "ios"
+        text="" 
+        defaultHref="/"
+        color="light"
+      >
+      </ion-back-button>  
     </ion-button>
       <div class="welcome-content">
         <span class="letter-welcome mq-font-bold">WELCOME</span>
-        <ion-item class="ion-margin-bottom"  color="button-login">
+        <ion-item class="ion-margin-bottom content-input"  color="button-login">
           <ion-icon name="person-circle-outline"></ion-icon>
-          <ion-input type="text" [(ngModel)]="user.userName" placeholder="   Username"></ion-input>
+          <ion-input type="text" [(ngModel)]="employee.userName" placeholder="   Username"></ion-input>
         </ion-item>
-        <ion-item class="ion-margin-bottom" color="button-login">
+        <ion-item class="ion-margin-bottom content-input" color="button-login">
           <ion-icon name="lock-closed-outline" ></ion-icon>
-          <ion-input type="password" [(ngModel)]="user.password" placeholder="   Password"></ion-input>
+          <ion-input type="password" [(ngModel)]="employee.password" placeholder="   Password"></ion-input>
         </ion-item>
         <br>
         <ion-button 
@@ -23,7 +29,7 @@
           [ngClass]="{'button-style mq-font-bold':unActive(), 'button-style-activate mq-font-bold':activate()}"  
           expand="block" 
           fill="outline" 
-          (click)="login(user.userName, user.password)"
+          (click)="login(employee.userName, employee.password)"
         > 
           LOGIN
         </ion-button>

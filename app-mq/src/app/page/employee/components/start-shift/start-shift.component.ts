@@ -10,7 +10,6 @@ export class StartShiftComponent implements OnInit {
 
   @Input() weeklyHours: number;
   @Input() weeklyTotalHours: number;
-  @Input() week: number;
   @Input() userName: string;
   @Input() rol: string;
 
@@ -21,11 +20,13 @@ export class StartShiftComponent implements OnInit {
   ngOnInit() {}
 
   goCurrentWeek():void{
-    this.router.navigate(['employee/2/hours']);
+    const WEEK_CURRENT:string = "weekcurrent";
+    this.router.navigate([`employee/${this.userName}/hours/${WEEK_CURRENT}`]);
   }
 
   goWeeklyTotalHours():void{
-    this.router.navigate(['employee/2/hours']);
+    const TOTAL:string = "total";
+    this.router.navigate([`employee/${this.userName}/hours/${TOTAL}`]);
   }
 
   start():void {

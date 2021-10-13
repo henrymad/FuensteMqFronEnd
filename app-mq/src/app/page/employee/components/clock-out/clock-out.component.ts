@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ClockOutDTO, ResponseClocOut, ResponseEvent } from 'src/app/class/employee';
+import { ClockOutDTO, ResponseClocOut, ResponseEvent } from 'src/app/class/utils';
 import { Geolocation } from '@capacitor/geolocation';
 import { ClockOutService } from 'src/app/services/clock-out.service';
 

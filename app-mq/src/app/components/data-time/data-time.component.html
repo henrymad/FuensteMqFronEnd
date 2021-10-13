@@ -3,18 +3,18 @@
     class="mq-text-color weekly" 
     [style.color]="colorText"
   >
-    {{week}}
+    {{time | date:'EE' | uppercase}}
   </span>
   <span 
     class="mq-text-color date mq-font-bold ion-justify-content-center" 
     [style.color]="colorText" [style.font-size]="fontSize" [style.line-height]="lineHeight"
   > 
-    {{date}}
+    {{time | date:'d'}}
   </span>
   <span 
     class="mq-text-color time ion-justify-content-center" 
     [style.color]="colorText" 
   >
-    {{time}}
+    {{time | date:'shortTime'}}
   </span>
 </div>

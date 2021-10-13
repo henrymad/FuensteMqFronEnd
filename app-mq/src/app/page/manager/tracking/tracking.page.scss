@@ -1,0 +1,12 @@
+.toolbar-content{
+  --background:linear-gradient(180deg, #030A58, #0514AF)!important;
+  border-bottom: 12px solid #00064E;
+  height: var(--height, 90px);
+  display: flex;
+}
+
+.toolbar-position{
+  --background:#030A58!important;
+  height: var(--height, 80px);
+  display: flex;
+}

@@ -67,7 +67,6 @@
 .mq-toolbar-large {
   --background: linear-gradient(180deg, #030A58, #0514AF);
   height: var(--height, 100px);
-  display: flex;
 }
 
 .mq-toolbar-small {
@@ -106,7 +105,7 @@
 }
 
 .mq-content-card-profile {
-  height: 250px;
+  height: 300px;
   display: flex;
   flex-direction:column;
   justify-content: center;

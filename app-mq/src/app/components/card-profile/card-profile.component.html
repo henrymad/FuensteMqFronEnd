@@ -15,7 +15,7 @@
       <span class = "position" [style] = "nameStyle">{{positionUser}}</span>
     </div>
   </ion-card-header>
-  <ion-card-content class="ion-no-padding">
+  <ion-card-content *ngIf="isActiveRol()"class="ion-no-padding">
     <div class="content-body">
       <div class="content-hours">
         <ng-content select="[component-hours]"></ng-content>

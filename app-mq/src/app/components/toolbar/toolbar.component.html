@@ -1,0 +1,19 @@
+<ion-toolbar  mode="ios">
+  <ion-buttons slot="start" class="ion-padding-start">
+    <ion-back-button 
+      mode = "ios"
+      text="" 
+      defaultHref="manager"
+      color="light"
+    >
+    </ion-back-button>  
+  </ion-buttons>
+  <ion-buttons slot="end" class="ion-padding-end">
+    <ion-button (click)="goManager()">
+      <ion-icon  color="light" name="person" ></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-text color="light">
+    <ion-title>{{title}}</ion-title>
+  </ion-text>
+</ion-toolbar>

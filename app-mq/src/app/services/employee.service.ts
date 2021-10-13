@@ -9,6 +9,7 @@ import { HOST, TOKEN_TYPE } from '../constants/constants';
 export class EmployeeService {
 
   URL: string = HOST.concat("/mqservices/user-information/basic-information");
+  URL_LIST_EMPLOYEE = HOST.concat("/mqservices/user/list-manager-employee");
 
   constructor() { }
 
@@ -21,6 +22,16 @@ export class EmployeeService {
       params: {username: `${user}`, rolname: `${rol}`} 
     }
     return from(Http.get(options));
+    }
+
+    listEmployee(token:string){
+      const options: HttpOptions = {
+        url: this.URL_LIST_EMPLOYEE,
+        headers:{
+          'Authorization':`${TOKEN_TYPE} ${token}`
+        },
+      }
+      return from(Http.get(options));
     }
   }
 

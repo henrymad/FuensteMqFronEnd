@@ -1,0 +1,65 @@
+<ion-header>
+  <toolbar></toolbar>
+ </ion-header>
+ 
+ <ion-content>
+   <div *ngIf = "isState(state);then esStaff else esBuilding"></div>
+   <ng-template #esStaff>
+     <div class="mq-content-background-gray">
+      <div style="display: flex;justify-content: space-between;margin-left: 22px;margin-right: 22px;padding-top: 20px;">
+        <span>Staff</span>
+        <div style="display: flex;align-items: center;">
+          <span style="display: flex;align-items: initial;"> Filter</span>
+          <ion-icon role="button" name="chevron-down-outline" style="width: 20px;height: 20px;" (click)="prueba()"></ion-icon>
+        </div>
+      </div>
+       <div 
+         *ngFor="let profile of profiles"
+         style="padding-top: 10px;display: flex; flex-direction: column; background-color: #EBEBEB;"
+       >
+         <card-staff 
+           class="card-size"
+           name = "Henry Maldonado"
+           role = "Manager"
+           hours = "50 hours"  
+         >
+         <div>
+           <ion-buttons slot="end">
+             <ion-button style="padding-right: 25px;" (click)="goToStaff()">
+               <ion-icon role="button" name="chevron-forward-outline" style="width: 20px;height: 20px;"></ion-icon>
+             </ion-button>
+           </ion-buttons>
+         </div>
+         </card-staff>
+       </div>
+     </div>
+   </ng-template>
+   <ng-template #esBuilding>
+     <div class="mq-content-background-gray"> 
+       <div style="display: flex;justify-content: space-between;margin-left: 22px;margin-right: 22px;padding-top: 20px;">
+         <span>Building</span>
+       </div>
+       <div 
+         *ngFor="let profile of profiles"
+         style="padding-top: 10px;display: flex; flex-direction: column; background-color: #EBEBEB;"
+       >
+         <card-building
+           class="card-size"
+           nameBuilding = "Marylan School"
+           role = "Manager"
+           name = "Henry Maldonado"
+           address = "2121 NW Savier St - MaryIND"  
+         >
+         <div>
+           <ion-buttons slot="end">
+             <ion-button style="padding-right: 25px;" (click)="goToStaff()">
+               <ion-icon role="button" name="chevron-forward-outline" style="width: 20px;height: 20px;"></ion-icon>
+             </ion-button>
+           </ion-buttons>
+         </div>
+         </card-building>
+       </div>
+     </div>
+   </ng-template>
+ </ion-content>
+ 

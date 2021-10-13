@@ -1,0 +1,9 @@
+.card-size {
+  height: 85px;
+}
+
+@media(min-width:800px){
+  .card-size {
+    height: 130px;
+  }
+}

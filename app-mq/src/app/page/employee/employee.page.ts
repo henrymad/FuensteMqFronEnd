@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Employee, ResponseClocOut, ResponseEvent } from 'src/app/class/employee';
+import { Employee, ResponseClocOut, ResponseEvent } from 'src/app/class/utils';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { Storage } from '@capacitor/storage';
 
@@ -37,7 +37,6 @@ export class EmployeePage implements OnInit {
     this.employee.id = Number(this.getUser());
     this.employeeService.getInformationUser(this.employee.userName, this.employee.token, this.employee.role)
       .subscribe(response => {
-        console.log(response.data);
         this.employee.name = response.data.name;
         this.employee.role = this.employee.upperCaseEmployee(response.data.role);
         this.employee.position = this.employee.upperCaseEmployee(response.data.position);

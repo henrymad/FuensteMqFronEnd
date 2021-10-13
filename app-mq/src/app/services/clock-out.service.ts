@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, HttpOptions} from '@capacitor-community/http';
 import { from, Observable } from 'rxjs';
-import { ClockOutDTO } from '../class/employee';
+import { ClockOutDTO } from '../class/utils';
 import { HOST, TOKEN_TYPE } from '../constants/constants'
 
 @Injectable({

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { Storage } from '@capacitor/storage';
 import { AlertController } from '@ionic/angular';
-import { Employee } from 'src/app/class/employee';
+import { Employee } from 'src/app/class/utils';
 
 @Component({
   selector: 'app-login',
@@ -26,14 +26,27 @@ export class LoginPage implements OnInit {
     this.unActive();
   }
 
-  login(userName:string, password:string){
+  async login(userName:string, password:string){
     if(userName.length != 0 && password.length != 0){
       this.logingService.postInformationBasic(userName, password)
       .subscribe(
         response => {
-          this.setToken(response.data.access_token);
-          this.setRol(response.data.rol)
-          this.router.navigate([`employee/${response.data.usuario}`]);
+          if(response.status != 200){
+            this.errorCredentialsAlert(response.data.error_description);
+          }
+          else {
+            console.log(response.data);
+            console.log(response.data.usuario);
+            this.setToken(response.data.access_token);
+            this.setRol(response.data.rol);
+            this.setUserName(response.data.usuario);
+            if(response.data.rol == "employee"){
+              this.router.navigate([`employee/${response.data.usuario}`]);
+            }else {
+              this.router.navigate([`${response.data.rol}`]);
+            }
+            
+          }
       },
       error => console.log(error)); 
     }
@@ -70,6 +83,13 @@ export class LoginPage implements OnInit {
     });
   }
 
+  async setUserName(userNameValue:string){
+    const user = await Storage.set({
+      key: 'username',
+      value: userNameValue
+    });
+  }
+
   async presentAlert() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -81,7 +101,16 @@ export class LoginPage implements OnInit {
     await alert.present();
   }
 
-  setEmployee(){
+  async errorCredentialsAlert(messageError:string) {
+    const alert = await this.alertController.create({
+      header: 'ERROR CREDENTIALS',
+      message: `${messageError}`,
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+
+  setEmployee():void{
     this.employee.userName = "";
     this.employee.password = "";
   }

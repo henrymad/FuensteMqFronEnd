@@ -9,6 +9,7 @@ import { HOST, TOKEN_TYPE } from '../constants/constants';
 export class BuildingService {
 
   URL:string = HOST.concat("/mqservices/building/list");
+  URL_LIST_BUILDING = HOST.concat("/mqservices/building/list-information");
 
   constructor() { }
 
@@ -20,5 +21,15 @@ export class BuildingService {
       },
     }
     return from(Http.get(options));
+  }
+
+  listBuilding(token:string){
+    const options: HttpOptions = {
+      url: this.URL_LIST_BUILDING,
+      headers:{
+        'Authorization':`${TOKEN_TYPE} ${token}`
+      },
+    }
+    return from(Http.get(options))
   }
 }

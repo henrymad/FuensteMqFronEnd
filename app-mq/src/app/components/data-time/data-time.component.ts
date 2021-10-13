@@ -7,14 +7,14 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class DataTimeComponent implements OnInit {
 
-  @Input() week: string;
-  @Input() date: string; 
-  @Input() time: string;
+  time: Date;
   @Input() colorText:string;
   @Input() fontSize:string;
-  @Input() lineHeight:string; 
+  @Input() lineHeight:string;
 
-  constructor() { }
+  constructor() {
+    this.time = new Date();
+  }
 
   ngOnInit() {}
 

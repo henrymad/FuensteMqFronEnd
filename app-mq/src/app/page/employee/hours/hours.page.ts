@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Storage } from '@capacitor/storage';
-import { DetailWeek, Employee } from 'src/app/class/employee';
+import { DetailWeek, Employee } from 'src/app/class/utils';
 import { EmployeeService } from 'src/app/services/employee.service';
 
 @Component({

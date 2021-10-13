@@ -1,0 +1,66 @@
+<ion-header>
+ <toolbar [title]="state"></toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf = "isState(state);then esStaff else esBuilding"></div>
+  <ng-template #esStaff>
+    <div class="mq-content-background-gray">
+      <div class="content-staff">
+        <span>Staff</span>
+      </div>
+      <div 
+        *ngFor="let profile of listEmployes"
+        class="content-cards"
+      >
+        <card-staff 
+          class="card-size"
+          [firstName] = "profile.firstName"
+          [lastName] = "profile.lastName"
+          [role] = "profile.role.nameRole"
+          [posistion] = "profile.position.namePosition" 
+          [photo] = "profile.avatar" 
+        >
+        <div>
+          <ion-buttons slot="end">
+            <ion-button style="padding-right: 25px;" (click)="goToProfile(profile.userName)">
+              <ion-icon role="button" name="chevron-forward-outline" class="size-icon"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </div>
+        </card-staff>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #esBuilding>
+    <div class="mq-content-background-gray"> 
+      <div style="display: flex;justify-content: space-between;margin-left: 22px;margin-right: 22px;padding-top: 20px;">
+        <span>Building</span>
+      </div>
+      <div 
+        *ngFor="let building of buildings"
+        style="padding-top: 10px;display: flex; flex-direction: column; background-color: #EBEBEB;"
+      >
+        <card-building
+          class="card-size"
+          [nameBuilding] = "building.nameBuilding"
+          [role] = "building.user.role.nameRole"
+          [firstName] = "building.user.firstName"
+          [lastName] = "building.user.lastName"
+          [address] = "building.address"  
+          [city] = "building.city"
+        >
+        <div>
+          <ion-buttons slot="end">
+            <ion-button style="padding-right: 25px;">
+              <ion-icon role="button" name="chevron-forward-outline" style="width: 20px;height: 20px;"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </div>
+        </card-building>
+      </div>
+    </div>
+  </ng-template>
+</ion-content>
+<tab [rol]="manager.role"></tab>
+

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DetailWeek } from 'src/app/class/employee';
+import { DetailWeek } from 'src/app/class/utils';
 
 @Component({
   selector: 'table-hours',

@@ -1,0 +1,63 @@
+<ion-content class="mq-background-color-gray">
+  <ion-grid class="mq-content mq-background-color-gray ion-no-padding">
+    <ion-row>
+      <ion-col class="ion-no-padding">
+       <card-profile
+        [photo] = "manager.photo" 
+        [nameUser] = "manager.name"
+        [roleUser] = "manager.role" 
+        [positionUser] = "manager.position"
+       >
+       </card-profile>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="ion-no-padding">
+        <div class="mq-content-data-time"> 
+          <data-time></data-time>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="ion-no-padding">
+        <div class="mq-content-card-profile mq-background-color-gray ">
+          <ion-card class="mq-card ion-align-items-center mq-dflex">
+            <img 
+              src="../../../assets/icon/person-sharp.svg" 
+              alt="Building"
+              class="mq-img-card-building"
+            />
+            <div class="mq-dflex mq-flex-direcciont-column" style="width: 100%;">
+              <span class="mq-text-color-gray mq-font-bold mq-text-building">Your Staff</span>
+            </div>
+            <div>
+              <ion-buttons slot="end">
+                <ion-button style="padding-right: 25px;" (click)="goToStaff()">
+                  <ion-icon role="button" name="chevron-forward-outline" style="font-size:25px;color:black "></ion-icon>
+                </ion-button>
+              </ion-buttons>
+            </div>
+          </ion-card>
+          <ion-card class="mq-card ion-align-items-center mq-dflex">
+            <img 
+              src="../../../assets/icon/Icon-awesome-building.svg" 
+              alt="Building"
+              class="mq-img-card-building"
+            />
+            <div class="mq-dflex mq-flex-direcciont-column" style="width: 100%;">
+              <span class="mq-text-color-gray mq-font-bold mq-text-building">Your Buildings</span>
+            </div>
+            <div>
+              <ion-buttons slot="end">
+                <ion-button style="padding-right: 25px;" (click)="goToBuilding()" >
+                  <ion-icon role="button" name="chevron-forward-outline" style="font-size:25px;color:black "></ion-icon>
+                </ion-button>
+              </ion-buttons>
+            </div>
+          </ion-card>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<tab [rol]="manager.role"></tab>

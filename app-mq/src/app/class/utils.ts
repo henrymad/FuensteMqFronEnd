@@ -15,6 +15,8 @@ export class Employee {
   public role:string;
   public photo:string;
   public userName:string;
+  public firstName:string;
+  public lastName:string;
   public password:string;
   public position:string;
   public token:string;

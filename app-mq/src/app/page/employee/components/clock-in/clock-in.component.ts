@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Building,ResponseEvent} from 'src/app/class/employee';
+import { Building,ResponseEvent} from 'src/app/class/utils';
 import { BuildingService } from 'src/app/services/building.service';
 import { ClockInService } from 'src/app/services/clock-in.service';
 

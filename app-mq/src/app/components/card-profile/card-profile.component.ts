@@ -17,4 +17,7 @@ export class CardProfileComponent implements OnInit {
 
   ngOnInit() {}
 
+  isActiveRol():boolean{
+    return this.roleUser == "Employee" || this.positionUser == "Employee" ? true:false;
+  }
 }

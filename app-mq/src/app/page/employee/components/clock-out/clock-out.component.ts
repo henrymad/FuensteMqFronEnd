@@ -32,11 +32,6 @@ export class ClockOutComponent implements OnInit {
     this.stateEvent.emit(this.response);
   }
 
-  getDateEnd():string{
-    const now = new Date();
-    return now.toISOString();
-  }
-
   async setData():Promise<void> {
     const coordinates = await Geolocation.getCurrentPosition();
     this.dataCLockout.username = this.data.responseDTO.username;
@@ -44,7 +39,7 @@ export class ClockOutComponent implements OnInit {
     this.dataCLockout.dateStartShift = this.data.responseDTO.dateStartShift;
     this.dataCLockout.latitudeStartShift = this.data.responseDTO.latitudeStartShift;
     this.dataCLockout.longitudeStartShift = this.data.responseDTO.longitudeStartShift;
-    this.dataCLockout.dateEndShift = this.getDateEnd();
+    this.dataCLockout.dateEndShift = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString();
     this.dataCLockout.latitudeEndShift = coordinates.coords.latitude.toString(); 
     this.dataCLockout.longitudeEndShift = coordinates.coords.longitude.toString(); 
     this.dataCLockout.timestampId = this.data.timestampId;

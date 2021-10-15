@@ -92,10 +92,8 @@ export class LoginPage implements OnInit {
 
   async presentAlert() {
     const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Alert',
-      subHeader: 'Subtitle',
-      message: 'This is an alert message.',
+      header: 'Login failed',
+      message: 'Some input is empty or is null, verify!',
       buttons: ['OK']
     });
     await alert.present();

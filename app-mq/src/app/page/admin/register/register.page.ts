@@ -124,6 +124,7 @@ export class RegisterPage implements OnInit {
 
   async failedAlert() {
     const alert = await this.alertController.create({
+      mode:"ios",
       header: 'Register failed',
       message: 'Failed to register, try again',
       buttons: ['OK']

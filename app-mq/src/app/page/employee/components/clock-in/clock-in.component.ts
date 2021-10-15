@@ -16,7 +16,6 @@ export class ClockInComponent implements OnInit {
   @Output() dataEvent = new EventEmitter<ResponseEvent>();
   @Input() token:string;
   @Input() userName: string;
-
   data: ResponseEvent = new ResponseEvent(); 
   building: Building = new Building();
   buildingSelect:any;
@@ -25,7 +24,7 @@ export class ClockInComponent implements OnInit {
     private buildingService: BuildingService,
     private clockInService: ClockInService,
     private alertController: AlertController,
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.getBuildingList();
@@ -53,16 +52,11 @@ export class ClockInComponent implements OnInit {
     }  
   }
 
-  getDateStart(): string{
-    const now = new Date()
-    return now.toISOString() ;
-  }
-
   async presentAlert() {
     const alert = await this.alertController.create({
-      header: 'Alert',
-      subHeader: 'Subtitle',
-      message: 'This is an alert message.',
+      mode:"ios",
+      header: 'Start shift failed',
+      message: 'Failed to start the shift, choose your buildings and try again',
       buttons: ['OK']
     });
     await alert.present();
@@ -71,7 +65,8 @@ export class ClockInComponent implements OnInit {
   async setData(): Promise<ResponseEvent>{
     const coordinates = await Geolocation.getCurrentPosition();
     this.data.responseDTO.username = this.userName;
-    this.data.responseDTO.dateStartShift = this.getDateStart();
+    this.data.responseDTO.dateStartShift = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString();
+    console.log(this.data.responseDTO.dateStartShift);
     this.data.responseDTO.latitudeStartShift = coordinates.coords.latitude.toString();
     this.data.responseDTO.longitudeStartShift = coordinates.coords.longitude.toString();
     console.log(this.data.responseDTO);

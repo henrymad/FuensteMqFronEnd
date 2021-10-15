@@ -10,6 +10,7 @@ export class EmployeeService {
 
   URL: string = HOST.concat("/mqservices/user-information/basic-information");
   URL_LIST_EMPLOYEE = HOST.concat("/mqservices/user/list-manager-employee");
+  URL_LOCATION = HOST.concat("/mqservices/employee/location");
 
   constructor() { }
 
@@ -33,6 +34,18 @@ export class EmployeeService {
       }
       return from(Http.get(options));
     }
+
+    getLocationEmployee(token:string, username:string){
+      const options: HttpOptions = {
+        url: this.URL_LOCATION,
+        headers:{
+          'Authorization':`${TOKEN_TYPE} ${token}`
+        },
+        params: {username: `${username}`} 
+      }
+      return from(Http.get(options));
+    }
   }
+
 
 

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, HttpOptions} from '@capacitor-community/http';
 import { from, Observable } from 'rxjs';
 import { HOST, TOKEN_TYPE } from '../constants/constants';
+import { delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +33,7 @@ export class EmployeeService {
           'Authorization':`${TOKEN_TYPE} ${token}`
         },
       }
-      return from(Http.get(options));
+      return from(Http.get(options)).pipe(delay(1500));
     }
 
     getLocationEmployee(token:string, username:string){

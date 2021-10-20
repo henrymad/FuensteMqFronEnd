@@ -10,9 +10,9 @@
         <ng-content select="[button-profile]"></ng-content>
       </div>
       <img class="photo" [style.background-image]="'url(' + photo + ')'" />
-      <span class="name mq-font-bold">{{nameUser}}</span>
-      <span class = "role" [style] = "nameStyle">{{roleUser}}</span>
-      <span class = "position" [style] = "nameStyle">{{positionUser}}</span>
+      <span class="name mq-font-bold">{{nameUser | titlecase}}</span>
+      <span class = "role" [style] = "nameStyle">{{roleUser | titlecase}}</span>
+      <span class = "position" [style] = "nameStyle">{{positionUser | titlecase}}</span>
     </div>
   </ion-card-header>
   <ion-card-content *ngIf="isActiveRol()"class="ion-no-padding">

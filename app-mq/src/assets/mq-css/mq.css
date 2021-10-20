@@ -131,7 +131,7 @@
   .mq-tab{
     display: flex;
     justify-content: space-around;
-    height: 110px!important;
+    height: 100px!important;
     border: 0rem!important;
   }
 

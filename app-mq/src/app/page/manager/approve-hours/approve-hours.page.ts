@@ -4,7 +4,6 @@ import { DetailWeek } from 'src/app/class/utils';
 import { Body } from 'src/app/interface/interfaceService';
 import { Storage } from '@capacitor/storage';
 import { ApproveHoursService } from 'src/app/services/approve-hours.service';
-import { ThisReceiver } from '@angular/compiler';
 
 @Component({
   selector: 'app-approve-hours',

@@ -11,6 +11,7 @@ import { ToolbarComponentModule } from 'src/app/components/toolbar/toolbar.modul
 import { TabComponentModule } from 'src/app/components/tab/tab.moudle';
 import { CardStaffComponentModule } from 'src/app/components/card-staff/card-profile.module';
 import { CardBuildingComponentModule } from 'src/app/components/card-building/card-building.module';
+import { ComponentModule } from '../components/components.module';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { CardBuildingComponentModule } from 'src/app/components/card-building/ca
     ToolbarComponentModule,
     TabComponentModule,
     CardStaffComponentModule,
-    CardBuildingComponentModule
+    CardBuildingComponentModule,
+    ComponentModule
   ],
   declarations: [StaffBuildingPage]
 })

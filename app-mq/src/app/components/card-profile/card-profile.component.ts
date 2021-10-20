@@ -12,12 +12,13 @@ export class CardProfileComponent implements OnInit {
   @Input() roleUser: string;
   @Input() nameStyle: string; 
   @Input() positionUser:string;
+  @Input() profile:string;
 
   constructor() { }
 
   ngOnInit() {}
 
   isActiveRol():boolean{
-    return this.roleUser == "Employee" || this.positionUser == "Employee" ? true:false;
+    return this.roleUser == "Employee" || this.positionUser == "Employee" || this.profile == "active" ? true:false;
   }
 }

@@ -2,6 +2,34 @@
   height: 85px;
 }
 
+.content-staff {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 22px;
+  margin-right: 22px;
+  padding-top: 20px;
+}
+
+.content-building{
+  display: flex;
+  justify-content: space-between;
+  margin-left: 22px;
+  margin-right: 22px;
+  padding-top: 20px;
+}
+
+.content-card-staff {
+  padding-top: 10px;
+  display: flex; 
+  flex-direction: column; 
+  background-color: #EBEBEB;
+}
+
+.size-icon {
+  width: 20px;
+  height: 20px;
+}
+
 @media(min-width:800px){
   .card-size {
     height: 130px;

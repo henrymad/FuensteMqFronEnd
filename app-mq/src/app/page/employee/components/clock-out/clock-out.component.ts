@@ -49,8 +49,6 @@ export class ClockOutComponent implements OnInit {
         console.log(this.response.data);
         });
     this.response.state = true;
-    //return this.dataCLockout;
-
   }
 
 }

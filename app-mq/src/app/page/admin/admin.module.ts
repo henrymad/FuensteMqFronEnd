@@ -11,6 +11,7 @@ import { CardProfileComponentModule } from 'src/app/components/card-profile/card
 import { TotalHoursComponentModule } from 'src/app/components/total-hours/total-hours.module';
 import { DataTimeComponentModule } from 'src/app/components/data-time/data-time.module';
 import { TabComponentModule } from 'src/app/components/tab/tab.moudle';
+import { ComponentModule } from './components/components.module';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { TabComponentModule } from 'src/app/components/tab/tab.moudle';
     CardProfileComponentModule,
     TotalHoursComponentModule,
     DataTimeComponentModule,
-    TabComponentModule
+    TabComponentModule,
+    ComponentModule
   ],
   declarations: [AdminPage]
 })

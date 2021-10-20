@@ -1,9 +1,60 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>building-detail</ion-title>
-  </ion-toolbar>
-</ion-header>
+  <toolbar 
+    title="Buildings"
+    [subTitle] = "nameBuilding"
+    role = "admin"
+  >
+  </toolbar>
+ </ion-header>
+ 
+ <ion-content>
+     <div class="mq-background-gray">
+        <div class="content-staff">
+          <span style="margin-left: 22px">Manager</span>
+        </div>
+        <div 
+          class="content-card-staff"
+        >
+          <card-staff 
+            class="card-size"
+              [firstName] = "manager.firstName"
+              [lastName] = "manager.lastName"
+              role = "manager"
+          >
+          <div>
+            <ion-buttons slot="end">
+              <ion-button style="padding-right: 25px;">
+                <ion-icon role="button" name="chevron-forward-outline" class="size-icon"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </div>
+          </card-staff>
+        </div>
+      </div>
+        <div class="content-staff mq-background-gray">
+          <span style="margin-left: 22px">Employees</span>
+        </div>
+        <div 
+        *ngFor="let employee of listEmployee"
+        class="content-card-staff"
+      >
+        <card-staff 
+          class="card-size"
+            [firstName] = "employee.name"
+            [lastName] = "employee.lastname"
+            role = "Employee" 
+        >
+        <div>
+          <ion-buttons slot="end">
+            <ion-button style="padding-right: 25px;">
+              <ion-icon role="button" name="chevron-forward-outline" class="size-icon"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </div>
+        </card-staff>
+      </div>
+       
+     
+ </ion-content>
 
-<ion-content>
-
-</ion-content>
+ <tab-admin></tab-admin>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ActionSheetController } from '@ionic/angular';
-import { Storage } from '@capacitor/storage'
+import { Storage } from '@capacitor/storage';
 import { Employee } from 'src/app/class/utils';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { BuildingService } from 'src/app/services/building.service';
@@ -27,7 +26,7 @@ export class StaffBuildingPage implements OnInit {
     private buildingService: BuildingService) { }
 
   ngOnInit() {
-   this.getState(); 
+    this.getState(); 
     this.isState(this.state)
     this.setRoleManager();
     this.changeState();
@@ -54,7 +53,7 @@ export class StaffBuildingPage implements OnInit {
         console.log(response)
         this.buildings.push(...response.data);
 
-        });
+      });
   }
 
   isState(state:string): boolean {
@@ -90,6 +89,10 @@ export class StaffBuildingPage implements OnInit {
     else{
       this.listBuildings();
     }
+  }
+
+  goManager():void {
+    this.router.navigate(['/manager']);
   }
 
 }

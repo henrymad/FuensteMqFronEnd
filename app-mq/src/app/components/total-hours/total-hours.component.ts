@@ -7,7 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TotalHoursComponent implements OnInit {
 
-  @Input() hours: number = 0;
+  @Input() hours: number;
+  @Input() hola: number; 
 
   constructor() { }
 

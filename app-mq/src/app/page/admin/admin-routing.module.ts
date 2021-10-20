@@ -13,7 +13,7 @@ const routes: Routes = [
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
   {
-    path: 'staff-building',
+    path: ':value',
     loadChildren: () => import('./staff-building/staff-building.module').then( m => m.StaffBuildingPageModule)
   },
   

@@ -53,9 +53,10 @@ export class AdminPage implements OnInit {
     return user.value;
   }
 
-  goToStaff(){
+  goToStaff():void{
     const STAFF:string = "Staff";
     this.router.navigate([`admin/${STAFF}`]);
+    console.log("hola");
   }
 
   goToBuilding(){

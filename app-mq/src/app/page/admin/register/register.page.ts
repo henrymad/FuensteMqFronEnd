@@ -71,8 +71,11 @@ export class RegisterPage implements OnInit {
       this.request.rolName = this.user.rol;
       this.request.positionId = this.user.position;
       this.registerService.create(this.request, this.token).subscribe(
-        response => this.successResponse = response,  
-        error => this.failedResponse = error
+
+        response => {
+           console.log(response); 
+          this.successResponse = response},  
+        error => {this.failedResponse = error}
       );
       console.log("valor response" + this.successResponse);
       if(this.successResponse != null){
@@ -82,6 +85,7 @@ export class RegisterPage implements OnInit {
       console.log("valor response" + this.successResponse);
       if(!this.failedResponse != null){
         this.failedAlert();
+        return;
         //this.router.navigate(['admin/:id/:token/admin-staff-buildings/:state']);
       }
     }
@@ -131,6 +135,7 @@ export class RegisterPage implements OnInit {
     });
 
     await alert.present();
+    const { role } = await alert.onDidDismiss();
   }
 
   async emptyAlert() {
@@ -141,6 +146,7 @@ export class RegisterPage implements OnInit {
     });
 
     await alert.present();
+    const { role } = await alert.onDidDismiss();
   }
 
 

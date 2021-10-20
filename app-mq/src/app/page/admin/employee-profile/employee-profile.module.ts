@@ -10,6 +10,7 @@ import { EmployeeProfilePage } from './employee-profile.page';
 import { DataTimeComponentModule } from 'src/app/components/data-time/data-time.module';
 import { TotalHoursComponentModule } from 'src/app/components/total-hours/total-hours.module';
 import { CardProfileComponentModule } from 'src/app/components/card-profile/card-profile.moudule';
+import { ComponentModule } from '../components/components.module';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { CardProfileComponentModule } from 'src/app/components/card-profile/card
     EmployeeProfilePageRoutingModule,
     DataTimeComponentModule,
     TotalHoursComponentModule,
-    CardProfileComponentModule
+    CardProfileComponentModule,
+    ComponentModule
   ],
   declarations: [EmployeeProfilePage]
 })

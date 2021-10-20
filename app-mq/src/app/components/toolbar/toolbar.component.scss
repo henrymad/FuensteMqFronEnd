@@ -3,3 +3,12 @@ ion-toolbar{
   height: var(--height, 100px);
   display: flex;
 }
+
+.sub-title {
+  display: flex;
+  position: absolute;
+  left: 0;
+  right: 0;
+  justify-content: center;
+  padding-top: 10px;
+}

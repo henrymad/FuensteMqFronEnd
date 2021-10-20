@@ -1,32 +1,43 @@
 <ion-header>
-  <toolbar></toolbar>
+  <toolbar 
+    [title]="state"
+    role = "admin"
+  >
+  </toolbar>
  </ion-header>
  
  <ion-content>
    <div *ngIf = "isState(state);then esStaff else esBuilding"></div>
    <ng-template #esStaff>
      <div class="mq-content-background-gray">
-      <div style="display: flex;justify-content: space-between;margin-left: 22px;margin-right: 22px;padding-top: 20px;">
+      <div class="content-staff">
         <span>Staff</span>
-        <div style="display: flex;align-items: center;">
-          <span style="display: flex;align-items: initial;"> Filter</span>
-          <ion-icon role="button" name="chevron-down-outline" style="width: 20px;height: 20px;" (click)="prueba()"></ion-icon>
+        <div class="mq-dflex ion-align-items-center">
+          <span style="display: flex;align-items: initial;">Filter</span>
+          <ion-icon 
+            role="button" 
+            name="chevron-down-outline" 
+            class="size-icon" 
+            (click)="selectEmployee()"
+          ></ion-icon>
         </div>
       </div>
        <div 
-         *ngFor="let profile of profiles"
-         style="padding-top: 10px;display: flex; flex-direction: column; background-color: #EBEBEB;"
+         *ngFor="let employee of employees;let index = index; trackBy: trackByFn"
+         class="content-card-staff"
        >
          <card-staff 
-           class="card-size"
-           name = "Henry Maldonado"
-           role = "Manager"
-           hours = "50 hours"  
+          class="card-size"
+            [firstName] = "employee.firstName"
+            [lastName] = "employee.lastName"
+            [role] = "employee.role.nameRole"
+            [posistion] = "employee.position.namePosition" 
+            [photo] = "employee.avatar"  
          >
          <div>
            <ion-buttons slot="end">
-             <ion-button style="padding-right: 25px;" (click)="goToStaff()">
-               <ion-icon role="button" name="chevron-forward-outline" style="width: 20px;height: 20px;"></ion-icon>
+             <ion-button style="padding-right: 25px;" (click)="goToStaff(employee.role.nameRole, employee.userName)">
+               <ion-icon role="button" name="chevron-forward-outline" class="size-icon"></ion-icon>
              </ion-button>
            </ion-buttons>
          </div>
@@ -36,24 +47,26 @@
    </ng-template>
    <ng-template #esBuilding>
      <div class="mq-content-background-gray"> 
-       <div style="display: flex;justify-content: space-between;margin-left: 22px;margin-right: 22px;padding-top: 20px;">
+       <div class="content-building">
          <span>Building</span>
        </div>
        <div 
-         *ngFor="let profile of profiles"
-         style="padding-top: 10px;display: flex; flex-direction: column; background-color: #EBEBEB;"
+         *ngFor="let building of buildings"
+         class="content-card-building"
        >
          <card-building
-           class="card-size"
-           nameBuilding = "Marylan School"
-           role = "Manager"
-           name = "Henry Maldonado"
-           address = "2121 NW Savier St - MaryIND"  
+          class="card-size"
+          [nameBuilding] = "building.nameBuilding"
+          [role] = "building.user.role.nameRole"
+          [firstName] = "building.user.firstName"
+          [lastName] = "building.user.lastName"
+          [address] = "building.address"  
+          [city] = "building.city"  
          >
          <div>
            <ion-buttons slot="end">
-             <ion-button style="padding-right: 25px;" (click)="goToStaff()">
-               <ion-icon role="button" name="chevron-forward-outline" style="width: 20px;height: 20px;"></ion-icon>
+             <ion-button style="padding-right: 25px;" (click)="goToBuildingDetail(building.buildingId, building.nameBuilding)">
+               <ion-icon role="button" name="chevron-forward-outline" class="size-icon"></ion-icon>
              </ion-button>
            </ion-buttons>
          </div>
@@ -62,4 +75,5 @@
      </div>
    </ng-template>
  </ion-content>
+ <tab-admin></tab-admin>
  

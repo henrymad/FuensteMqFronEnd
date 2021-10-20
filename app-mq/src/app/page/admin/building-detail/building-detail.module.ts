@@ -7,13 +7,19 @@ import { IonicModule } from '@ionic/angular';
 import { BuildingDetailPageRoutingModule } from './building-detail-routing.module';
 
 import { BuildingDetailPage } from './building-detail.page';
+import { CardStaffComponentModule } from 'src/app/components/card-staff/card-profile.module';
+import { ToolbarComponentModule } from 'src/app/components/toolbar/toolbar.module';
+import { ComponentModule } from '../components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    BuildingDetailPageRoutingModule
+    BuildingDetailPageRoutingModule,
+    CardStaffComponentModule,
+    ToolbarComponentModule,
+    ComponentModule
   ],
   declarations: [BuildingDetailPage]
 })

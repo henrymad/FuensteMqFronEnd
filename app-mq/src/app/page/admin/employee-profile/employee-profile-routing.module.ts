@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { TrackingPage } from '../tracking/tracking.page';
 
 import { EmployeeProfilePage } from './employee-profile.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: EmployeeProfilePage
+    component: EmployeeProfilePage,
   },
   {
     path: 'tracking',
@@ -16,6 +17,8 @@ const routes: Routes = [
     path: 'approve-hours',
     loadChildren: () => import('../approve-hours/approve-hours.module').then( m => m.ApproveHoursPageModule)
   },
+ 
+ 
 ];
 
 @NgModule({

@@ -9,13 +9,10 @@ import { Router } from '@angular/router';
 export class ToolbarComponent implements OnInit {
 
   @Input() title:string;
+  @Input() role:string;
+  @Input() subTitle:string;
 
   constructor(private router:Router) { }
 
   ngOnInit() {}
-
-  goManager():void {
-    this.router.navigate(['/manager']);
-  }
-
 }

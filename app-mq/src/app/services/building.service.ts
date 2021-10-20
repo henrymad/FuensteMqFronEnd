@@ -10,6 +10,7 @@ export class BuildingService {
 
   URL:string = HOST.concat("/mqservices/building/list");
   URL_LIST_BUILDING = HOST.concat("/mqservices/building/list-information");
+  URL_EMPLOYEE_BUILDING = HOST.concat("/mqservices/building/information")
 
   constructor() { }
 
@@ -29,6 +30,17 @@ export class BuildingService {
       headers:{
         'Authorization':`${TOKEN_TYPE} ${token}`
       },
+    }
+    return from(Http.get(options))
+  }
+
+  getEmployeeBuilding(token:string, idBuilding:string){
+    const options: HttpOptions = {
+      url: this.URL_EMPLOYEE_BUILDING,
+      headers:{
+        'Authorization':`${TOKEN_TYPE} ${token}`
+      },
+      params: {buildingId: `${idBuilding}`} 
     }
     return from(Http.get(options))
   }

@@ -26,7 +26,6 @@ export class EmployeeProfilePage implements OnInit {
   }
 
   async setEmployee(){
-    this.employee.role = await this.getRole();
     this.employee.token = await this.getToken() 
     this.employee.userName = this.getUser();
     this.employee.role =  "employee";

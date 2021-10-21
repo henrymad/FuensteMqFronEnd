@@ -4,6 +4,7 @@ import { DetailWeek } from 'src/app/class/utils';
 import { Body } from 'src/app/interface/interfaceService';
 import { Storage } from '@capacitor/storage';
 import { ApproveHoursService } from 'src/app/services/approve-hours.service';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-approve-hours',
@@ -25,12 +26,12 @@ export class ApproveHoursPage implements OnInit {
 
   constructor(
     private activateRoute: ActivatedRoute,
-    private apporveService: ApproveHoursService
+    private apporveService: ApproveHoursService,
+    private location: Location
   
   ) { }
 
   ngOnInit() {
-    //this.token = this.activateRoute.snapshot.paramMap.get('token');
     this.getHoursService();
   }
 
@@ -205,7 +206,7 @@ export class ApproveHoursPage implements OnInit {
     this.request[1] = this.requestSecondHours;
     console.log(this.request);
     this.apporveService.postApproveHours(this.token,this.request,1).subscribe(response => {
-      console.log(response);
+      this.location.back();
     });    
   }
 

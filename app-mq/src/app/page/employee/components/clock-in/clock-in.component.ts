@@ -56,7 +56,7 @@ export class ClockInComponent implements OnInit {
     const alert = await this.alertController.create({
       mode:"ios",
       header: 'Start shift failed',
-      message: 'Failed to start the shift, choose your buildings and try again',
+      message: 'Failed to start shift, choose your building and try again',
       buttons: ['OK']
     });
     await alert.present();

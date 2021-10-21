@@ -51,8 +51,8 @@ export class EmployeeProfilePage implements OnInit {
   async presentAlert() {
     const alert = await this.alertController.create({
       mode:'ios',
-      header: 'Alert',
-      message: 'This is an alert message.',
+      header: 'We are sorry',
+      message: 'This rol does not have permissions.',
       buttons: ['OK']
     });
 

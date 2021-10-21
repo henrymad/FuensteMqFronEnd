@@ -55,7 +55,7 @@ export class ClockInComponent implements OnInit {
     const alert = await this.alertController.create({
       mode:"ios",
       header: 'Start shift failed',
-      message: 'Failed to start the shift, choose your buildings and try again',
+      message: 'Failed to start shift, choose your building and try again',
       buttons: ['OK']
     });
     await alert.present();
@@ -71,10 +71,14 @@ export class ClockInComponent implements OnInit {
     console.log(this.data.responseDTO);
     this.clockInService.clockIn(this.data.responseDTO, this.token)
       .subscribe(response => {
+<<<<<<< HEAD
         console.log(response.data)
         this.data.timestampId = response.data.timestampId;
         this.data.status = true;
         this.dataEvent.emit(this.data);
+=======
+        this.data.timestampId = response.data.timestampId;
+>>>>>>> ca585039b89a5e28f2792977ad25c157e29e8b30
         console.log(response);
       });
       

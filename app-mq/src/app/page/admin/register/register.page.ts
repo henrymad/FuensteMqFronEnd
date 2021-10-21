@@ -107,6 +107,10 @@ export class RegisterPage implements OnInit {
     }
   }
 
+  recoverRolValue(event: CustomEvent){
+    this.user.rol = event.detail.value;
+  }
+
   activate():boolean {
     const SIZE = 0;
     return this.user.userName.length != SIZE && this.user.password.length != SIZE ? true : false; 

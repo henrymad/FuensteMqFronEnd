@@ -37,10 +37,15 @@
           <ion-item class="ion-margin-bottom" color="button-login">
             <ion-icon name="lock-closed-outline" ></ion-icon>
             <ion-input type="password" [(ngModel)]="user.password" placeholder="   Password" required></ion-input>
-          </ion-item>
-          <ion-item class="ion-margin-bottom" color="button-login">
-            <ion-icon name="people"></ion-icon>
-            <ion-input type="text" [(ngModel)]="user.rol" placeholder="   Rol" required></ion-input >
+          </ion-item> 
+          <ion-item  color="button-login">
+            <!--<ion-icon name="people"></ion-icon>-->
+            <ion-label>Rol</ion-label>
+            <ion-select (ionChange)="recoverRolValue($event)" multiple="false" interface="action-sheet" placeholder="Select One">
+              <ion-select-option value="admin">Admin</ion-select-option>
+              <ion-select-option value="employee">Employee</ion-select-option>
+              <ion-select-option value="manager">Manager</ion-select-option>
+            </ion-select>
           </ion-item>
           <ion-item  color="button-login">
             <ion-label>Position</ion-label>

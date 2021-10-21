@@ -13,7 +13,7 @@ export class ClockOutService {
 
   constructor() { }
 
-  clockOut(body:ClockOutDTO, token:string): Observable<any>{
+  clockOut(body:any, token:string): Observable<any>{
     const options: HttpOptions = {
       url: this.URL,
       method: 'POST',

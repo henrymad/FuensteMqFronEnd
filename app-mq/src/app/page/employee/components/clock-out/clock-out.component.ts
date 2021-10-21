@@ -29,7 +29,7 @@ export class ClockOutComponent implements OnInit {
 
   async endShift(){
     await this.setData();
-    this.stateEvent.emit(this.response);
+    
   }
 
   async setData():Promise<void> {
@@ -43,12 +43,14 @@ export class ClockOutComponent implements OnInit {
     this.dataCLockout.latitudeEndShift = coordinates.coords.latitude.toString(); 
     this.dataCLockout.longitudeEndShift = coordinates.coords.longitude.toString(); 
     this.dataCLockout.timestampId = this.data.timestampId;
+    console.log(this.dataCLockout);
     this.clockoutService.clockOut(this.dataCLockout, this.token)
       .subscribe(res => {
         this.response.data = res.data;
+        this.response.state = true;
         console.log(this.response.data);
-        });
-    this.response.state = true;
+        this.stateEvent.emit(this.response);
+      });
   }
 
 }

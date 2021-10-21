@@ -61,7 +61,7 @@
 
 .mq-tab{
   height: 78px!important;
-  border: 0rem!important;
+  border: 0rem;
 }
 
 .mq-toolbar-large {

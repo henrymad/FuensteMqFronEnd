@@ -44,8 +44,7 @@ export class ClockInComponent implements OnInit {
 
   async startShift(){
     if(this.data.responseDTO.buildingid !=null && this.data.responseDTO.buildingid != undefined ){
-      const data = await this.setData();
-      this.dataEvent.emit(data);
+      await this.setData();
     }
     else {
       this.presentAlert();
@@ -62,7 +61,7 @@ export class ClockInComponent implements OnInit {
     await alert.present();
   }
 
-  async setData(): Promise<ResponseEvent>{
+  async setData(): Promise<void>{
     const coordinates = await Geolocation.getCurrentPosition();
     this.data.responseDTO.username = this.userName;
     this.data.responseDTO.dateStartShift = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString();
@@ -72,10 +71,12 @@ export class ClockInComponent implements OnInit {
     console.log(this.data.responseDTO);
     this.clockInService.clockIn(this.data.responseDTO, this.token)
       .subscribe(response => {
-        this.data.timestampId = response.data;
+        console.log(response.data)
+        this.data.timestampId = response.data.timestampId;
+        this.data.status = true;
+        this.dataEvent.emit(this.data);
         console.log(response);
       });
-      this.data.status = true;
-      return this.data;
+      
   }
 }

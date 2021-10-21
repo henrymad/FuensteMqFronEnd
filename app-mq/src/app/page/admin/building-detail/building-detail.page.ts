@@ -31,10 +31,11 @@ export class BuildingDetailPage implements OnInit {
     let token = await this.getToken();
     this.buildingService.getEmployeeBuilding(token, idBuilding)
       .subscribe(result => {
+        console.log(result.data);
         const {employees, manager} = result.data;
         this.manager.firstName = manager.name;
         this.manager.lastName = manager.lastname;
-        this.listEmployee.push(...employees);
+        this.listEmployee = employees;
         console.log(manager);
         console.log(this.listEmployee);
       })

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Employee, ResponseClocOut, ResponseEvent } from 'src/app/class/utils';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { Storage } from '@capacitor/storage';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -18,8 +19,6 @@ export class EmployeePage implements OnInit {
   statusStart: boolean = true;
   statusIn: boolean = false;
   statusOut:boolean = false;
-
-  hoursWorked:number = 0;
  
   constructor(
     private employeeService: EmployeeService,
@@ -37,6 +36,7 @@ export class EmployeePage implements OnInit {
     this.employee.id = Number(this.getUser());
     this.employeeService.getInformationUser(this.employee.userName, this.employee.token, this.employee.role)
       .subscribe(response => {
+        console.log(response);
         this.employee.name = response.data.name;
         this.employee.role = this.employee.upperCaseEmployee(response.data.role);
         this.employee.position = this.employee.upperCaseEmployee(response.data.position);
@@ -72,14 +72,16 @@ export class EmployeePage implements OnInit {
     this.statusIn = false;
     this.statusOut = data.status;
     this.dataClockOut = data;
+    console.log(this.dataClockOut.timestampId);
   }
 
-  endShift(state:ResponseClocOut):void {
+  async endShift(result:any){
     this.statusOut = false;
-    this.statusStart = state.state;
-    this.employee.hoursWorked = state.data;
+    this.statusStart = result.state;
+    this.employee.hoursWorked = result.data;
     this.employee.isMensageActive = true;
     this.messange();
+  
   }
   messange(): void{
     let time: number = 3500;

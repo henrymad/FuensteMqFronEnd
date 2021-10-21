@@ -72,7 +72,7 @@ export class ClockInComponent implements OnInit {
     console.log(this.data.responseDTO);
     this.clockInService.clockIn(this.data.responseDTO, this.token)
       .subscribe(response => {
-        this.data.timestampId = response.data;
+        this.data.timestampId = response.data.timestampId;
         console.log(response);
       });
       this.data.status = true;

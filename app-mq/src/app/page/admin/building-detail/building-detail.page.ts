@@ -36,7 +36,7 @@ export class BuildingDetailPage implements OnInit {
       .subscribe(result => {
         console.log(result.data);
         const {employees, manager} = result.data;
-        this.manager.firstName = manager.name;
+        this.manager.firstName = manager.firstName;
         this.manager.lastName = manager.lastname;
         this.manager.role = manager.role;
         this.manager.userName = manager.username

@@ -137,7 +137,8 @@ export class ApproveHoursPage implements OnInit {
 
   async getHoursService(){
     this.token = await this.getToken();
-    this.apporveService.getTimeSpantApprovation(this.token,1).subscribe(response => {
+    let userName = this.getUser();
+    this.apporveService.getTimeSpantApprovation(this.token,userName).subscribe(response => {
       console.log(response.data);
       const [ObjectoUno, ObjectoDos] = response.data.body;
       console.log(ObjectoUno.sundayDate);
@@ -205,9 +206,14 @@ export class ApproveHoursPage implements OnInit {
     this.request[0] = this.requestHours;
     this.request[1] = this.requestSecondHours;
     console.log(this.request);
-    this.apporveService.postApproveHours(this.token,this.request,1).subscribe(response => {
+    let userName = this.getUser();
+    this.apporveService.postApproveHours(this.token,this.request,userName).subscribe(response => {
       this.location.back();
     });    
+  }
+
+  getUser(){
+    return this.activateRoute.snapshot.paramMap.get('username');
   }
 
 }

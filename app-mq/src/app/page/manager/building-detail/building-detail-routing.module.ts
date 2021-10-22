@@ -1,25 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { StaffBuildingPage } from './staff-building.page';
+import { BuildingDetailPage } from './building-detail.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: StaffBuildingPage
+    component: BuildingDetailPage
   },
   {
     path: ':profile/:username',
     loadChildren: () => import('../employee-profile/employee-profile.module').then( m => m.EmployeeProfilePageModule)
   },
-  {
-    path: ':namebuilding',
-    loadChildren: () => import('../building-detail/building-detail.module').then( m => m.BuildingDetailPageModule)
-  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class StaffBuildingPageRoutingModule {}
+export class BuildingDetailPageRoutingModule {}

@@ -61,7 +61,8 @@ export class StaffBuildingPage implements OnInit {
   }
 
   goToProfile(userName:string):void{
-    this.router.navigate([`manager/${this.state}/employee-profile/${userName}`]);
+    const profile = "employee"
+    this.router.navigate([`manager/${this.state}/${profile}/${userName}`]);
   }
 
   getState(){
@@ -93,6 +94,20 @@ export class StaffBuildingPage implements OnInit {
 
   goManager():void {
     this.router.navigate(['/manager']);
+  }
+
+
+  goToBuildingDetail(buildingId:string, nameBuilding:string){
+    this.setBuildingId(buildingId);
+    this.router.navigate([`manager/${this.state}/${nameBuilding}`]);
+
+  }
+
+  async setBuildingId(valueBuilding:string){
+    const building = await Storage.set({
+      key: 'buildingId',
+      value: valueBuilding
+    });
   }
 
 }

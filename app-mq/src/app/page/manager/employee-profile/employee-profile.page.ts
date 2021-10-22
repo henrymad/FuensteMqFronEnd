@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from 'src/app/class/utils';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { Storage } from '@capacitor/storage';
+import { AlertController } from '@ionic/angular';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-employee-profile',
@@ -13,35 +15,54 @@ export class EmployeeProfilePage implements OnInit {
 
   employee: Employee = new Employee();
   manager: Employee = new Employee();
+  state:string;
+  nameBuilding:string;
 
   constructor(
     private employeeService: EmployeeService,
     private activateRoute: ActivatedRoute,
     private router: Router,
+    private alertController: AlertController
     ){ }
 
   ngOnInit() {
     this.setEmployee();
     this.setRoleManager();
+    this.getState();
+    this.getNameBuilding();
   }
 
   async setEmployee(){
     this.employee.token = await this.getToken() 
     this.employee.userName = this.getUser();
-    this.employee.role =  "employee";
-    this.employeeService.getInformationUser(this.employee.userName, this.employee.token, this.employee.role)
+    this.employee.role =  this.getProfile();
+    if(this.employee.role === "employee"){
+      this.employeeService.getInformationUser(this.employee.userName, this.employee.token, this.employee.role)
       .subscribe(response => {
         this.employee.name = response.data.name;
-        this.employee.role =  this.employee.upperCaseEmployee(response.data.role);
+        this.employee.role =  response.data.role;
         this.employee.position = this.employee.upperCaseEmployee(response.data.position);
         this.employee.hours = response.data.hours;
         this.employee.photo = this.employee.convertBase64ToJpg(response.data.avatar);
         this.employee.weekHours = response.data.weekHours;
         this.employee.weeklyTotalHours = response.data.weeklyTotalHours;
       });
+    }
+    else{
+      this.employeeService.getInformationUser(this.employee.userName, this.employee.token, this.employee.role)
+      .subscribe(response => {
+        console.log(response)
+        this.employee.name = response.data.firstName + " " + response.data.lastName;
+        this.employee.role =  response.data.role.nameRole;
+        this.employee.position = response.data.position.namePosition;
+        this.employee.hours = 0;
+        this.employee.photo = this.employee.convertBase64ToJpg(response.data.avatar);
+        this.employee.weekHours = 0;
+        this.employee.weeklyTotalHours = 0;
+      });
+    }
     
   }
-
 
   async getToken(): Promise<string>{
     const token = await Storage.get({key: 'token'});
@@ -58,9 +79,18 @@ export class EmployeeProfilePage implements OnInit {
   }
 
   tracking():void{
+    if(this.employee.role == "manager" || this.employee.role == "admin"){
+      this.presentAlert();
+      return;
+    }
     let userName:string = this.getUser();
-    let state:string = "Staff";
-    this.router.navigate([`manager/${state}/employee-profile/${userName}/tracking`]);
+    if(this.employee.role == "employee" && this.nameBuilding.length === 0){
+      this.router.navigate([`manager/${this.state}/${this.employee.role}/${userName}/tracking`]);
+    }
+    else{
+      this.router.navigate([`manager/${this.state}/${this.nameBuilding}/${this.employee.role}/${userName}/tracking`]);
+    }
+    
   }
 
   async setRoleManager(){
@@ -72,9 +102,42 @@ export class EmployeeProfilePage implements OnInit {
   }
 
   goApproveHours(){
+    if(this.employee.role == "manager" || this.employee.role == "admin"){
+      this.presentAlert();
+      return;
+    }
     let userName:string = this.getUser();
-    let state:string = "Staff";
-    this.router.navigate([`manager/${state}/employee-profile/${userName}/approve-hours`]);
+    if(this.employee.role == "employee" && this.nameBuilding.length === 0){
+      this.router.navigate([`manager/${this.state}/${this.employee.role}/${userName}/tracking`]);
+    }
+    else{
+      this.router.navigate([`manager/${this.state}/${this.nameBuilding}/${this.employee.role}/${userName}/tracking`]);
+    }
+  }
+
+  getProfile(){
+    return this.activateRoute.snapshot.paramMap.get('profile');
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      mode:'ios',
+      header: 'We are sorry',
+      message: 'This rol does not have permissions.',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
+  }
+
+  getState(){
+    this.state =  this.activateRoute.snapshot.paramMap.get('value');
+  }
+
+  getNameBuilding(){
+    this.nameBuilding =  this.activateRoute.snapshot.paramMap.get('namebuilding');
   }
 
 }

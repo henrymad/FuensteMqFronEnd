@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { Storage } from '@capacitor/storage';
 
 @Component({
   selector: 'start-shift',
@@ -30,8 +31,16 @@ export class StartShiftComponent implements OnInit {
   }
 
   start():void {
-    const STATE = true;
-    this.stateEvent.emit(STATE);
+    const STATE:string = "true";
+    this.setState(STATE);
+    this.stateEvent.emit(true);
+  }
+
+  async setState(valueState:string){
+    const state = await Storage.set({
+      key: 'state',
+      value: valueState
+    });
   }
 
 

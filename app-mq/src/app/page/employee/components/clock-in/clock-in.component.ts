@@ -5,6 +5,7 @@ import { ClockInService } from 'src/app/services/clock-in.service';
 
 import { Geolocation } from '@capacitor/geolocation';
 import { AlertController } from '@ionic/angular';
+import { Storage } from '@capacitor/storage';
 
 @Component({
   selector: 'clock-in',
@@ -71,12 +72,18 @@ export class ClockInComponent implements OnInit {
     console.log(this.data.responseDTO);
     this.clockInService.clockIn(this.data.responseDTO, this.token)
       .subscribe(response => {
-        console.log(response.data)
+        const STATE:string = "true";
+        this.setState(STATE);
         this.data.timestampId = response.data.timestampId;
         this.data.status = true;
         this.dataEvent.emit(this.data);
-        console.log(response);
-      });
-      
+      }); 
+  }
+
+  async setState(valueState:string){
+    const state = await Storage.set({
+      key: 'state',
+      value: valueState
+    });
   }
 }

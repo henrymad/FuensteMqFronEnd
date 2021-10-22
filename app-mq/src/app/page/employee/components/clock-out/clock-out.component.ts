@@ -46,7 +46,8 @@ export class ClockOutComponent implements OnInit {
     console.log(this.dataCLockout);
     this.clockoutService.clockOut(this.dataCLockout, this.token)
       .subscribe(res => {
-        this.response.data = res.data;
+        console.log(res);
+        this.response.data = res.data.hours;
         this.response.state = true;
         console.log(this.response.data);
         this.stateEvent.emit(this.response);

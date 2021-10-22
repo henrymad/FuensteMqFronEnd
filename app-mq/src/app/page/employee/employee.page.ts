@@ -36,7 +36,6 @@ export class EmployeePage implements OnInit {
     this.employee.id = Number(this.getUser());
     this.employeeService.getInformationUser(this.employee.userName, this.employee.token, this.employee.role)
       .subscribe(response => {
-        console.log(response);
         this.employee.name = response.data.name;
         this.employee.role = this.employee.upperCaseEmployee(response.data.role);
         this.employee.position = this.employee.upperCaseEmployee(response.data.position);
@@ -68,19 +67,25 @@ export class EmployeePage implements OnInit {
     this.statusIn = state;
   }
 
-  startShift(data: ResponseEvent):void{
-    this.statusIn = false;
-    this.statusOut = data.status;
-    this.dataClockOut = data;
-    console.log(this.dataClockOut.timestampId);
+  async startShift(data: ResponseEvent){
+    const state:string = await this.getState();
+    if(state == "true"){
+      this.statusIn = false;
+      this.statusOut = data.status;
+      this.dataClockOut = data;
+    }
+   
   }
 
   async endShift(result:any){
-    this.statusOut = false;
-    this.statusStart = result.state;
-    this.employee.hoursWorked = result.data;
-    this.employee.isMensageActive = true;
-    this.messange();
+    const state:string = await this.getState();
+    if(state == "true"){
+      this.statusOut = false;
+      this.statusStart = result.state;
+      this.employee.hoursWorked = result.data;
+      this.employee.isMensageActive = true;
+      this.messange();
+    }
   
   }
   messange(): void{
@@ -88,6 +93,11 @@ export class EmployeePage implements OnInit {
     setTimeout(() => {
       this.employee.isMensageActive = false;
     }, time)
+  }
+
+  async getState(): Promise<string>{
+    const state = await Storage.get({key: 'state'});
+    return state.value;
   }
 
 }

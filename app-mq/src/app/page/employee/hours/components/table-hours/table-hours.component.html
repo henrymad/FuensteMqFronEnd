@@ -11,16 +11,19 @@
       </ion-col>
       <ion-col class="ion-no-padding">
         <ion-row class="date">
+          <span style="color: #ffff;font-size: 14px;">{{weeksDetail.sundayDate}}</span>
+        </ion-row>
+        <ion-row class="date">
           <span style="color: #ffff;font-size: 14px;">{{weeksDetail.mondayDate}}</span>
         </ion-row>
         <ion-row class="date">
-          <span style="color: #ffff;font-size: 14px;">{{weeksDetail.thursdayDate}}</span>
+          <span style="color: #ffff;font-size: 14px;">{{weeksDetail.tuesdayDate}}</span>
         </ion-row>
         <ion-row class="date">
           <span style="color: #ffff;font-size: 14px;">{{weeksDetail.wednesdayDate}}</span>
         </ion-row>
         <ion-row class="date">
-          <span style="color: #ffff;font-size: 14px;">{{weeksDetail.tuesdayDate}}</span>
+          <span style="color: #ffff;font-size: 14px;">{{weeksDetail.thursdayDate}}</span>
         </ion-row>
         <ion-row class="date">
           <span style="color: #ffff;font-size: 14px;">{{weeksDetail.fridayDate}}</span>
@@ -28,31 +31,28 @@
         <ion-row class="date">
           <span style="color: #ffff;font-size: 14px;">{{weeksDetail.saturdayDate}}</span>
         </ion-row>
-        <ion-row class="date">
-          <span style="color: #ffff;font-size: 14px;">{{weeksDetail.sundayDate}}</span>
-        </ion-row>
        </ion-col>
        <ion-col class="ion-no-padding">
+        <ion-row class="hours mq-font-bold">
+          {{weeksDetail.sunday | number:'1.0-1'}} HOURS
+        </ion-row>
           <ion-row class="hours mq-font-bold">
-              {{weeksDetail.monday}} HOURS
+              {{weeksDetail.monday | number:'1.0-1'}} HOURS
           </ion-row>
           <ion-row class="hours mq-font-bold">
-            {{weeksDetail.thursday}} HOURS
+            {{weeksDetail.tuesday | number:'1.0-1'}} HOURS
           </ion-row>
           <ion-row class="hours mq-font-bold">
-            {{weeksDetail.wednesday}} HOURS
+            {{weeksDetail.wednesday | number:'1.0-1'}} HOURS
           </ion-row>
           <ion-row class="hours mq-font-bold">
-            {{weeksDetail.tuesday}} HOURS
+            {{weeksDetail.thursday | number:'1.0-1'}} HOURS
           </ion-row>
           <ion-row class="hours mq-font-bold">
-            {{weeksDetail.friday}} HOURS
+            {{weeksDetail.friday | number:'1.0-1'}} HOURS
           </ion-row>
           <ion-row class="hours mq-font-bold">
-            {{weeksDetail.saturday}} HOURS
-          </ion-row>
-          <ion-row class="hours mq-font-bold">
-            {{weeksDetail.sunday}} HOURS
+            {{weeksDetail.saturday | number:'1.0-1'}} HOURS
           </ion-row>
       </ion-col>
     </ion-row>

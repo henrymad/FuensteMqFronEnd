@@ -11,9 +11,7 @@ export class TableHoursComponent implements OnInit {
   @Input() weeksDetail: DetailWeek = new DetailWeek();
   day:string;
   
-  days: Array<string> = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"];
-  dates: Array<string> = ["09-10-2021", "09-10-2021", "09-10-2021", "09-10-2021", "09-10-2021", "09-10-2021", "09-10-2021"];
-  hours: Array<number> = [1,2,3,4,5,6,7];
+  days: Array<string> = ["SUNDAY","MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
 
   constructor() { }
 

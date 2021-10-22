@@ -53,7 +53,7 @@
           <div>
             <ion-buttons slot="end">
               <ion-button style="padding-right: 1px;" (click)=" goApproveHours()" >
-                <span class="mq-font-bold" style="padding-right: 1rem;color:black">{{employee.weeklyTotalHours}} HOURS</span>
+                <span class="mq-font-bold" style="padding-right: 1rem;color:black">{{employee.weeklyTotalHours | number:'1.0-1'}} HOURS</span>
                 <ion-icon role="button" name="chevron-forward-outline" style="font-size:25px;color:black "></ion-icon>
               </ion-button>
             </ion-buttons>

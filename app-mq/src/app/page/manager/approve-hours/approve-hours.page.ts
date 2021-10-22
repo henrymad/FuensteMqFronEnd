@@ -44,8 +44,11 @@ export class ApproveHoursPage implements OnInit {
     console.log(event.detail.value);
     if(date===this.requestHours.sundayDate){
       this.requestHours.sundayApprove = event.detail.value;
-      if(this.requestHours.sundayApprove="Y"){
+      if(this.requestHours.sundayApprove =="Y"){
         this.sumHours(this.requestHours.sunday);
+      }
+      else{
+        this.sumHours(this.requestHours.sunday*(-1));
       }
     }
     if(date===this.requestHours.mondayDate){
@@ -53,35 +56,53 @@ export class ApproveHoursPage implements OnInit {
       if(this.requestHours.mondayApprove="Y"){
         this.sumHours(this.requestHours.monday);
       }
+      else{
+        this.sumHours(this.requestHours.monday*(-1));
+      }
     }
     if(date===this.requestHours.tuesdayDate){
       this.requestHours.tuesdayApprove = event.detail.value;
-      if(this.requestHours.tuesdayApprove="Y"){
+      if(this.requestHours.tuesdayApprove=="Y"){
         this.sumHours(this.requestHours.tuesday);
+      }
+      else{
+        this.sumHours(this.requestHours.tuesday*(-1));
       }
     }
     if(date===this.requestHours.wednesdayDate){
       this.requestHours.wednesdayApprove = event.detail.value;
-      if(this.requestHours.wednesdayApprove="Y"){
+      if(this.requestHours.wednesdayApprove=="Y"){
         this.sumHours(this.requestHours.wednesday);
+      }
+      else{
+        this.sumHours(this.requestHours.wednesday*(-1));
       }
     }
     if(date===this.requestHours.thursdayDate){
       this.requestHours.thursdayApprove =  event.detail.value;
-      if(this.requestHours.thursdayApprove="Y"){
+      if(this.requestHours.thursdayApprove=="Y"){
         this.sumHours(this.requestHours.thursday);
+      }
+      else{
+        this.sumHours(this.requestHours.thursday*(-1));
       }
     }
     if(date===this.requestHours.fridayDate){
       this.requestHours.fridayApprove = event.detail.value;
-      if(this.requestHours.fridayApprove="Y"){
+      if(this.requestHours.fridayApprove=="Y"){
         this.sumHours(this.requestHours.friday);
+      }
+      else{
+        this.sumHours(this.requestHours.friday*(-1));
       }
     }
     if(date===this.requestHours.saturdayDate){
       this.requestHours.saturdayApprove = event.detail.value;
-      if(this.requestHours.saturdayApprove="Y"){
+      if(this.requestHours.saturdayApprove=="Y"){
         this.sumHours(this.requestHours.saturday);
+      }
+      else{
+        this.sumHours(this.requestHours.saturday*(-1));
       }
     }
 
@@ -91,44 +112,65 @@ export class ApproveHoursPage implements OnInit {
     console.log(event.detail.value);
     if(date===this.requestSecondHours.sundayDate){
       this.requestSecondHours.sundayApprove = event.detail.value;
-      if(this.requestSecondHours.sundayApprove="Y"){
+      if(this.requestSecondHours.sundayApprove=="Y"){
         this.sumHoursSecond(this.requestSecondHours.sunday);
+      }
+      else{
+        this.sumHoursSecond(this.requestSecondHours.sunday*(-1));
       }
     }
     if(date===this.requestSecondHours.mondayDate){
       this.requestSecondHours.mondayApprove = event.detail.value;
-      if(this.requestSecondHours.mondayApprove="Y"){
+      if(this.requestSecondHours.mondayApprove=="Y"){
         this.sumHoursSecond(this.requestSecondHours.monday);
+      }
+      else{
+        this.sumHoursSecond(this.requestSecondHours.monday*(-1));
       }
     }
     if(date===this.requestSecondHours.tuesdayDate){
       this.requestSecondHours.tuesdayApprove = event.detail.value;
-      if(this.requestSecondHours.tuesdayApprove="Y"){
+      if(this.requestSecondHours.tuesdayApprove=="Y"){
         this.sumHoursSecond(this.requestSecondHours.tuesday);
+      }
+      else{
+        this.sumHoursSecond(this.requestSecondHours.tuesday*(-1));
       }
     }
     if(date===this.requestSecondHours.wednesdayDate){
       this.requestSecondHours.wednesdayApprove = event.detail.value;
-      if(this.requestSecondHours.wednesdayApprove="Y"){
+      if(this.requestSecondHours.wednesdayApprove=="Y"){
         this.sumHoursSecond(this.requestSecondHours.wednesday);
+      }
+      else{
+        this.sumHoursSecond(this.requestSecondHours.wednesday*(-1));
       }
     }
     if(date===this.requestSecondHours.thursdayDate){
       this.requestSecondHours.thursdayApprove =  event.detail.value;
-      if(this.requestSecondHours.thursdayApprove="Y"){
+      if(this.requestSecondHours.thursdayApprove=="Y"){
         this.sumHoursSecond(this.requestSecondHours.thursday);
+      }
+      else{
+        this.sumHoursSecond(this.requestSecondHours.thursday*(-1));
       }
     }
     if(date===this.requestSecondHours.fridayDate){
       this.requestSecondHours.fridayApprove = event.detail.value;
-      if(this.requestSecondHours.fridayApprove="Y"){
+      if(this.requestSecondHours.fridayApprove=="Y"){
         this.sumHoursSecond(this.requestSecondHours.friday);
+      }
+      else{
+        this.sumHoursSecond(this.requestSecondHours.friday*(-1));
       }
     }
     if(date===this.requestSecondHours.saturdayDate){
       this.requestSecondHours.saturdayApprove = event.detail.value;
-      if(this.requestSecondHours.saturdayApprove="Y"){
+      if(this.requestSecondHours.saturdayApprove=="Y"){
         this.sumHoursSecond(this.requestSecondHours.saturday);
+      }
+      else{
+        this.sumHoursSecond(this.requestSecondHours.saturday*(-1));
       }
     }
 
@@ -187,14 +229,15 @@ export class ApproveHoursPage implements OnInit {
     });
   }
 
-  sumHours(number:number){
-    this.sumFirstTable = this.sumFirstTable + number;
-    this.sumTotalHours(this.sumFirstTable);
+  sumHours(num:number){
+    this.sumFirstTable = this.sumFirstTable + num;
+    this.sumTotalHours(num);
   }
 
-  sumHoursSecond(number:number){
-    this.sumSecondTable = this.sumSecondTable + number;
-    this.sumTotalHours(this.sumSecondTable);
+  sumHoursSecond(num:number){
+    console.log(num);
+    this.sumSecondTable = this.sumSecondTable + num;
+    this.sumTotalHours(num);
   }
 
   sumTotalHours(total:number){
@@ -208,6 +251,7 @@ export class ApproveHoursPage implements OnInit {
     console.log(this.request);
     let userName = this.getUser();
     this.apporveService.postApproveHours(this.token,this.request,userName).subscribe(response => {
+      console.log(response);
       this.location.back();
     });    
   }

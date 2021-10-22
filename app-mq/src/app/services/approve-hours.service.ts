@@ -26,7 +26,7 @@ export class ApproveHoursService {
 
   postApproveHours(token:string, body:any, param:any){
     const options: HttpOptions = {
-      url: this.URL_GET_HOURS,
+      url: this.URL_POST_APPROVE_HOURS,
       method: 'POST',
       headers:{
         'Authorization':`${TOKEN_TYPE} ${token}`,

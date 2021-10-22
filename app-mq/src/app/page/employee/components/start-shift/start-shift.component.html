@@ -3,7 +3,7 @@
     <div class="content-card">
       <ion-card class="card-small">
         <span class="mq-text-color-gray weekly-hours">Week Hours</span>
-        <span  class="weekly-total-hours mq-font-bold">{{weeklyHours | number:'1.0-0'}} HOURS</span>
+        <span  class="weekly-total-hours mq-font-bold">{{weeklyHours | number:'1.0-1'}} HOURS</span>
         <ion-buttons >
           <ion-button (click)="goCurrentWeek()">
             <ion-icon 
@@ -18,7 +18,7 @@
     <div class="content-card">
       <ion-card class="card-small">
         <span class="mq-text-color-gray weekly-hours">Weekly Total Hours</span>
-        <span  class="weekly-total-hours mq-font-bold">{{weeklyTotalHours | number:'1.0-0'}} HOURS</span>
+        <span  class="weekly-total-hours mq-font-bold">{{weeklyTotalHours | number:'1.0-1'}} HOURS</span>
         <ion-buttons >
           <ion-button (click)="goWeeklyTotalHours()">
             <ion-icon 

@@ -32,7 +32,13 @@ export class LoginPage implements OnInit {
       .subscribe(
         response => {
           if(response.status != 200){
+            console.log(response);
+            if(response.status == 400){
+              this.errorCredentialsAlert("Invalid credentials");
+              return;
+            }
             this.errorCredentialsAlert(response.data.error_description);
+            return;
           }
           else {
             console.log(response.data);

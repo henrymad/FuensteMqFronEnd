@@ -35,7 +35,7 @@ export class BuildingService {
     return from(Http.get(options)).pipe(delay(1500));
   }
 
-  getEmployeeBuilding(token:string, idBuilding:string){
+  getEmployeeBuilding(token:string, idBuilding:number){
     const options: HttpOptions = {
       url: this.URL_EMPLOYEE_BUILDING,
       headers:{

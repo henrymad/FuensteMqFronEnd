@@ -30,7 +30,8 @@ export class BuildingDetailPage implements OnInit {
   }
 
   async getBuildingEmployee(){
-    let idBuilding = await this.getBuildingId();
+    let idBuilding = Number(await this.getBuildingId());
+    console.log(idBuilding);
     let token = await this.getToken();
     this.buildingService.getEmployeeBuilding(token, idBuilding)
       .subscribe(result => {

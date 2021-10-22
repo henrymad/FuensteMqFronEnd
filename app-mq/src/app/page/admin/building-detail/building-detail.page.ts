@@ -15,6 +15,7 @@ export class BuildingDetailPage implements OnInit {
   listEmployee: Array<any> = [];
   state:string;
   isActive:boolean = true;
+  idBuilding:number;
 
   nameBuilding:string;
 
@@ -30,10 +31,10 @@ export class BuildingDetailPage implements OnInit {
   }
 
   async getBuildingEmployee(){
-    let idBuilding = Number(await this.getBuildingId());
-    console.log(idBuilding);
+    this.idBuilding = Number(await this.getBuildingId());
+    console.log(this.idBuilding);
     let token = await this.getToken();
-    this.buildingService.getEmployeeBuilding(token, idBuilding)
+    this.buildingService.getEmployeeBuilding(token, this.idBuilding)
       .subscribe(result => {
         console.log(result.data);
         const {employees, manager} = result.data;

@@ -43,6 +43,6 @@ export class BuildingService {
       },
       params: {buildingId: `${idBuilding}`} 
     }
-    return from(Http.get(options))
+    return from(Http.get(options)).pipe(delay(1500));
   }
 }

@@ -97,8 +97,8 @@ export class StaffBuildingPage implements OnInit {
   }
 
 
-  goToBuildingDetail(buildingId:string, nameBuilding:string){
-    this.setBuildingId(buildingId);
+  async goToBuildingDetail(buildingId:string, nameBuilding:string){
+    await this.setBuildingId(buildingId);
     this.router.navigate([`manager/${this.state}/${nameBuilding}`]);
 
   }

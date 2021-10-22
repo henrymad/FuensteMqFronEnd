@@ -30,9 +30,10 @@
           </div>
           </card-staff>
         </div>
-        <div class="content-staff mq-background-gray">
+        <div class="content-staff mq-background-gray" *ngIf="isActive">
           <span style="margin-left: 22px">Employees</span>
         </div>
+        <div *ngIf="isActive">
         <div 
         *ngFor="let employee of listEmployee"
         class="content-card-staff"
@@ -52,6 +53,7 @@
         </div>
         </card-staff>
       </div>
+    </div>
       <div  *ngIf="listEmployee.length === 0">
         <ion-list>
           <ion-item *ngFor="let item of [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]">

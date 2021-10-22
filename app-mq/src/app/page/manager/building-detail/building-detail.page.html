@@ -37,27 +37,29 @@
             </ion-buttons>
           </card-staff>
         </div>
-        <div class="content-staff mq-background-gray">
+        <div class="content-staff mq-background-gray" *ngIf="isActive">
           <span style="margin-left: 22px">Employees</span>
         </div>
-        <div 
-        *ngFor="let employee of listEmployee"
-        class="content-card-staff"
-      >
-        <card-staff 
-          class="card-size"
-            [firstName] = "employee.name"
-            [lastName] = "employee.lastname"
-            role = "Employee" 
-        >
-        <div>
-          <ion-buttons slot="end">
-            <ion-button style="padding-right: 25px;" (click)="goToProfileEmployee(employee.username, employee.role)">
-              <ion-icon role="button" name="chevron-forward-outline" class="size-icon"></ion-icon>
-            </ion-button>
-          </ion-buttons>
+        <div *ngIf="isActive">
+          <div 
+            *ngFor="let employee of listEmployee"
+            class="content-card-staff"
+          >
+          <card-staff 
+            class="card-size"
+              [firstName] = "employee.name"
+              [lastName] = "employee.lastname"
+              role = "Employee" 
+          >
+          <div>
+            <ion-buttons slot="end">
+              <ion-button style="padding-right: 25px;" (click)="goToProfileEmployee(employee.username, employee.role)">
+                <ion-icon role="button" name="chevron-forward-outline" class="size-icon"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </div>
+          </card-staff>
         </div>
-        </card-staff>
       </div>
       <div  *ngIf="listEmployee.length === 0">
         <ion-list>

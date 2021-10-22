@@ -14,6 +14,7 @@ export class BuildingDetailPage implements OnInit {
   manager: Employee = new Employee();
   listEmployee: Array<any> = [];
   state:string;
+  isActive:boolean = true;
 
   nameBuilding:string;
 
@@ -40,8 +41,9 @@ export class BuildingDetailPage implements OnInit {
         this.manager.role = manager.role;
         this.manager.userName = manager.username
         this.listEmployee.push(...employees);
-        if(employees.length == 0){
-          this.listEmployee.push(0);
+        if(employees.length === 0){
+          this.isActive = false;
+          this.listEmployee.push(1);
         }
         console.log(manager);
         console.log(this.listEmployee);

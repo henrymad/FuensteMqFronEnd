@@ -16,6 +16,7 @@ export class BuildingDetailPage implements OnInit {
   state:string;
 
   nameBuilding:string;
+  isActive:boolean = true;
 
   constructor(  
     private activateRoute: ActivatedRoute,
@@ -40,8 +41,9 @@ export class BuildingDetailPage implements OnInit {
         this.manager.role = manager.role;
         this.manager.userName = manager.username;
         this.listEmployee.push(...employees);
-        if(employees.length == 0){
-          this.listEmployee.push(0);
+        if(employees.length === 0){
+          this.isActive = false;
+          this.listEmployee.push(1);
         }
       })
 

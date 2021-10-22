@@ -104,8 +104,8 @@ export class StaffBuildingPage implements OnInit{
     this.router.navigate([`admin/${this.state}/${role}/${userName}`]);
   }
 
-  goToBuildingDetail(buildingId:string, nameBuilding:string){
-    this.setBuildingId(buildingId);
+  async goToBuildingDetail(buildingId:string, nameBuilding:string){
+    this.setBuildingId(""+buildingId);;
     this.router.navigate([`admin/${this.state}/${nameBuilding}`])
 
   }

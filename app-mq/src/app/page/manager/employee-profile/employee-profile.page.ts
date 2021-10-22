@@ -4,7 +4,6 @@ import { Employee } from 'src/app/class/utils';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { Storage } from '@capacitor/storage';
 import { AlertController } from '@ionic/angular';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-employee-profile',
@@ -84,7 +83,7 @@ export class EmployeeProfilePage implements OnInit {
       return;
     }
     let userName:string = this.getUser();
-    if(this.employee.role == "employee" && this.nameBuilding.length === 0){
+    if(this.employee.role == "employee" || this.nameBuilding.length === 0){
       this.router.navigate([`manager/${this.state}/${this.employee.role}/${userName}/tracking`]);
     }
     else{
@@ -107,11 +106,11 @@ export class EmployeeProfilePage implements OnInit {
       return;
     }
     let userName:string = this.getUser();
-    if(this.employee.role == "employee" && this.nameBuilding.length === 0){
-      this.router.navigate([`manager/${this.state}/${this.employee.role}/${userName}/tracking`]);
+    if(this.employee.role == "employee" || this.nameBuilding.length === 0){
+      this.router.navigate([`manager/${this.state}/${this.employee.role}/${userName}/approve-hours`]);
     }
     else{
-      this.router.navigate([`manager/${this.state}/${this.nameBuilding}/${this.employee.role}/${userName}/tracking`]);
+      this.router.navigate([`manager/${this.state}/${this.nameBuilding}/${this.employee.role}/${userName}/approve-hours`]);
     }
   }
 

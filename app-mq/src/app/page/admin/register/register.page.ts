@@ -71,23 +71,17 @@ export class RegisterPage implements OnInit {
       this.request.rolName = this.user.rol;
       this.request.positionId = this.user.position;
       this.registerService.create(this.request, this.token).subscribe(
-
         response => {
-           console.log(response); 
-          this.successResponse = response},  
-        error => {this.failedResponse = error}
-      );
-      console.log("valor response" + this.successResponse);
-      if(this.successResponse != null){
-        this.successAlert();
-        this.router.navigate(['admin']);
-      }
-      console.log("valor response" + this.successResponse);
-      if(!this.failedResponse != null){
-        this.failedAlert();
-        return;
-        //this.router.navigate(['admin/:id/:token/admin-staff-buildings/:state']);
-      }
+          if(response.status == 200){
+            this.successAlert();
+            this.router.navigate(['admin']);
+            return;
+          }
+          else{
+            this.failedAlert();
+            return;
+          }
+        });
     }
   }
 
@@ -145,6 +139,7 @@ export class RegisterPage implements OnInit {
   async emptyAlert() {
     const alert = await this.alertController.create({
       header: 'Register failed',
+      mode:"ios",
       message: 'Some input is empty or is null, verify!',
       buttons: ['OK']
     });

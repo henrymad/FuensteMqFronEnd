@@ -23,7 +23,7 @@
           >
           <div>
             <ion-buttons slot="end">
-              <ion-button style="padding-right: 25px;">
+              <ion-button style="padding-right: 25px;" (click)="goToProfileManager()">
                 <ion-icon role="button" name="chevron-forward-outline" class="size-icon"></ion-icon>
               </ion-button>
             </ion-buttons>
@@ -45,7 +45,7 @@
         >
         <div>
           <ion-buttons slot="end">
-            <ion-button style="padding-right: 25px;">
+            <ion-button style="padding-right: 25px;" (click)="goToProfileEmployee(employee.username, employee.role)">
               <ion-icon role="button" name="chevron-forward-outline" class="size-icon"></ion-icon>
             </ion-button>
           </ion-buttons>

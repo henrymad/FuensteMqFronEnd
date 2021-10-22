@@ -43,6 +43,26 @@
          </div>
          </card-staff>
        </div>
+       <div  *ngIf="employees.length === 0">
+        <ion-list>
+          <ion-item *ngFor="let item of [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]">
+            <ion-thumbnail slot="start">
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-thumbnail>
+            <ion-label>
+              <h3>
+                <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+              </h3>
+              <p>
+                <ion-skeleton-text animated style="width: 40%"></ion-skeleton-text>
+              </p>
+              <p>
+                <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+              </p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
      </div>
    </ng-template>
    <ng-template #esBuilding>
@@ -72,6 +92,26 @@
          </div>
          </card-building>
        </div>
+       <div  *ngIf="buildings.length === 0">
+        <ion-list>
+          <ion-item *ngFor="let item of [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]">
+            <ion-thumbnail slot="start">
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-thumbnail>
+            <ion-label>
+              <h3>
+                <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+              </h3>
+              <p>
+                <ion-skeleton-text animated style="width: 40%"></ion-skeleton-text>
+              </p>
+              <p>
+                <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+              </p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
      </div>
    </ng-template>
  </ion-content>

@@ -24,7 +24,7 @@
         </ion-buttons>
         <div style="padding-right: 32px;" button-profile></div>
        <total-hours 
-        hours = 25
+        [hours] = "employee.hours"
         component-hours
       >
       </total-hours>
@@ -52,8 +52,8 @@
           </div>
           <div>
             <ion-buttons slot="end">
-              <ion-button style="padding-right: 1px;" (click)="goApprove()" >
-                <span class="mq-font-bold" style="padding-right: 1rem;color:black">0 HOURS</span>
+              <ion-button style="padding-right: 1px;" (click)=" goApproveHours()" >
+                <span class="mq-font-bold" style="padding-right: 1rem;color:black">{{employee.weeklyTotalHours}} HOURS</span>
                 <ion-icon role="button" name="chevron-forward-outline" style="font-size:25px;color:black "></ion-icon>
               </ion-button>
             </ion-buttons>

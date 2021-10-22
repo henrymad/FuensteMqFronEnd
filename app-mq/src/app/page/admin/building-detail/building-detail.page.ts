@@ -13,6 +13,7 @@ export class BuildingDetailPage implements OnInit {
 
   manager: Employee = new Employee();
   listEmployee: Array<any> = [];
+  state:string;
 
   nameBuilding:string;
 
@@ -24,6 +25,7 @@ export class BuildingDetailPage implements OnInit {
   ngOnInit() {
     this.getNameBuilding();
     this.getBuildingEmployee();
+    this.getState();
   }
 
   async getBuildingEmployee(){
@@ -35,7 +37,12 @@ export class BuildingDetailPage implements OnInit {
         const {employees, manager} = result.data;
         this.manager.firstName = manager.name;
         this.manager.lastName = manager.lastname;
-        this.listEmployee = employees;
+        this.manager.role = manager.role;
+        this.manager.userName = manager.username
+        this.listEmployee.push(...employees);
+        if(employees.length == 0){
+          this.listEmployee.push(0);
+        }
         console.log(manager);
         console.log(this.listEmployee);
       })
@@ -54,6 +61,19 @@ export class BuildingDetailPage implements OnInit {
   async getBuildingId(): Promise<string>{
     const id = await Storage.get({key: 'buildingId'});
     return id.value;
+  }
+
+
+  goToProfileEmployee(userName:string, profile:string):void{
+    this.router.navigate([`admin/${this.state}/${this.nameBuilding}/${profile}/${userName}`]);
+  }
+
+  goToProfileManager(){
+    this.router.navigate([`admin/${this.state}/${this.nameBuilding}/${this.manager.role}/${this.manager.userName}`]);
+  }
+
+  getState(){
+    this.state =  this.activateRoute.snapshot.paramMap.get('value');
   }
 
 }

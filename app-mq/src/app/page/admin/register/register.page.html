@@ -38,18 +38,18 @@
             <ion-icon name="lock-closed-outline"  style="padding-right: 5px"></ion-icon>
             <ion-input type="password" [(ngModel)]="user.password" placeholder="   Password" required></ion-input>
           </ion-item> 
-          <ion-item  color="button-login">
+          <ion-item  class="ion-margin-bottom" color="button-login">
             <!--<ion-icon name="people"></ion-icon>-->
             <ion-label>Rol</ion-label>
-            <ion-select (ionChange)="recoverRolValue($event)" multiple="false" interface="action-sheet" placeholder="Select One">
+            <ion-select (ionChange)="recoverRolValue($event)" mode="ios" multiple="false" interface="action-sheet" placeholder="Select One">
               <ion-select-option value="admin">Admin</ion-select-option>
               <ion-select-option value="employee">Employee</ion-select-option>
               <ion-select-option value="manager">Manager</ion-select-option>
             </ion-select>
           </ion-item>
-          <ion-item  color="button-login">
+          <ion-item class="ion-margin-bottom" color="button-login">
             <ion-label>Position</ion-label>
-            <ion-select (ionChange)="recoverValue($event)" multiple="false" interface="action-sheet" placeholder="Select One">
+            <ion-select (ionChange)="recoverValue($event)" mode="ios" multiple="false" interface="action-sheet" placeholder="Select One">
               <ion-select-option value="Manager">Manager</ion-select-option>
               <ion-select-option value="Cleaner">Cleaner</ion-select-option>
               <ion-select-option value="Afternoon day porter">Afternoon day porter</ion-select-option>

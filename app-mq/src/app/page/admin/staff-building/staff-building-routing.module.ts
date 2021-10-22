@@ -9,7 +9,7 @@ const routes: Routes = [
     component: StaffBuildingPage
   },
   {
-    path: ':role/:username',
+    path: ':profile/:username',
     loadChildren: () => import('../employee-profile/employee-profile.module').then( m => m.EmployeeProfilePageModule)
   },
   {

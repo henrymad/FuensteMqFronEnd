@@ -39,9 +39,10 @@ export class BuildingDetailPage implements OnInit {
         this.manager.lastName = manager.lastname;
         this.manager.role = manager.role;
         this.manager.userName = manager.username;
-        this.listEmployee = employees;
-        console.log(manager);
-        console.log(this.listEmployee);
+        this.listEmployee.push(...employees);
+        if(employees.length == 0){
+          this.listEmployee.push(0);
+        }
       })
 
   }

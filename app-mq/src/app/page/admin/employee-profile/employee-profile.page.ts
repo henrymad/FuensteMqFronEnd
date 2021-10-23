@@ -39,6 +39,7 @@ export class EmployeeProfilePage implements OnInit {
     if(this.employee.role === "employee"){
       this.employeeService.getInformationUser(this.employee.userName, this.employee.token, this.employee.role)
       .subscribe(response => {
+        console.log(response)
         this.employee.name = response.data.name;
         this.employee.role =  response.data.role;
         this.employee.position = this.employee.upperCaseEmployee(response.data.position);

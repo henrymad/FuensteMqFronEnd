@@ -24,6 +24,28 @@ export class ApproveHoursPage implements OnInit {
   sumSecondTable: number=0;
   sumTotal: number = 0;
 
+  total = {
+    monday:0,
+    tuesday:0,
+    wednesday:0,
+    thursday:0,
+    friday:0,
+    saturday:0,
+    sunday:0
+
+  }
+
+  total_1 = {
+    monday:0,
+    tuesday:0,
+    wednesday:0,
+    thursday:0,
+    friday:0,
+    saturday:0,
+    sunday:0
+
+  }
+
   constructor(
     private activateRoute: ActivatedRoute,
     private apporveService: ApproveHoursService,
@@ -44,65 +66,79 @@ export class ApproveHoursPage implements OnInit {
     console.log(event.detail.value);
     if(date===this.requestHours.sundayDate){
       this.requestHours.sundayApprove = event.detail.value;
-      if(this.requestHours.sundayApprove =="Y"){
-        this.sumHours(this.requestHours.sunday);
+      if(this.requestHours.sundayApprove =="N"){
+        this.total_1.sunday = 0;
+        this.sumTotalFirstTable();
       }
       else{
-        this.sumHours(this.requestHours.sunday*(-1));
+        this.total_1.sunday = this.requestHours.sunday;
+        this.sumTotalFirstTable();
       }
     }
     if(date===this.requestHours.mondayDate){
       this.requestHours.mondayApprove = event.detail.value;
-      if(this.requestHours.mondayApprove="Y"){
-        this.sumHours(this.requestHours.monday);
+      if(this.requestHours.mondayApprove="N"){
+        this.total_1.monday = 0;
+        this.sumTotalFirstTable();
       }
       else{
-        this.sumHours(this.requestHours.monday*(-1));
+        this.total_1.monday = this.requestHours.monday;
+        this.sumTotalFirstTable();
       }
     }
     if(date===this.requestHours.tuesdayDate){
       this.requestHours.tuesdayApprove = event.detail.value;
-      if(this.requestHours.tuesdayApprove=="Y"){
-        this.sumHours(this.requestHours.tuesday);
+      if(this.requestHours.tuesdayApprove=="N"){
+        this.total_1.tuesday = 0;
+        this.sumTotalFirstTable();
       }
       else{
-        this.sumHours(this.requestHours.tuesday*(-1));
+        this.total_1.tuesday = this.requestHours.tuesday;
+        this.sumTotalFirstTable();
       }
     }
     if(date===this.requestHours.wednesdayDate){
       this.requestHours.wednesdayApprove = event.detail.value;
-      if(this.requestHours.wednesdayApprove=="Y"){
-        this.sumHours(this.requestHours.wednesday);
+      if(this.requestHours.wednesdayApprove=="N"){
+        this.total_1.wednesday = 0;
+        this.sumTotalFirstTable();
       }
       else{
-        this.sumHours(this.requestHours.wednesday*(-1));
+        this.total_1.wednesday = this.requestHours.wednesday;
+        this.sumTotalFirstTable();
       }
     }
     if(date===this.requestHours.thursdayDate){
       this.requestHours.thursdayApprove =  event.detail.value;
-      if(this.requestHours.thursdayApprove=="Y"){
-        this.sumHours(this.requestHours.thursday);
+      if(this.requestHours.thursdayApprove=="N"){
+        this.total_1.thursday = 0;
+        this.sumTotalFirstTable();
       }
       else{
-        this.sumHours(this.requestHours.thursday*(-1));
+        this.total_1.thursday = this.requestHours.thursday;
+        this.sumTotalFirstTable();
       }
     }
     if(date===this.requestHours.fridayDate){
       this.requestHours.fridayApprove = event.detail.value;
-      if(this.requestHours.fridayApprove=="Y"){
-        this.sumHours(this.requestHours.friday);
+      if(this.requestHours.fridayApprove=="N"){
+        this.total_1.friday = 0;
+        this.sumTotalFirstTable();
       }
       else{
-        this.sumHours(this.requestHours.friday*(-1));
+        this.total_1.friday = this.requestHours.friday;
+        this.sumTotalFirstTable();
       }
     }
     if(date===this.requestHours.saturdayDate){
       this.requestHours.saturdayApprove = event.detail.value;
-      if(this.requestHours.saturdayApprove=="Y"){
-        this.sumHours(this.requestHours.saturday);
+      if(this.requestHours.saturdayApprove=="N"){
+        this.total_1.saturday = 0;
+        this.sumTotalFirstTable();
       }
       else{
-        this.sumHours(this.requestHours.saturday*(-1));
+        this.total_1.saturday = this.requestHours.saturday;
+        this.sumTotalFirstTable();
       }
     }
 
@@ -113,65 +149,81 @@ export class ApproveHoursPage implements OnInit {
     if(date===this.requestSecondHours.sundayDate){
       this.requestSecondHours.sundayApprove = event.detail.value;
       if(this.requestSecondHours.sundayApprove=="Y"){
-        this.sumHoursSecond(this.requestSecondHours.sunday);
+        this.total.sunday = 0;
+        this.sumTotalSecondTable();
       }
       else{
-        this.sumHoursSecond(this.requestSecondHours.sunday*(-1));
+        this.total.sunday = this.requestSecondHours.sunday;
+        this.sumTotalSecondTable();
       }
     }
     if(date===this.requestSecondHours.mondayDate){
       this.requestSecondHours.mondayApprove = event.detail.value;
       if(this.requestSecondHours.mondayApprove=="Y"){
-        this.sumHoursSecond(this.requestSecondHours.monday);
+        this.total.monday = 0;
+        this.sumTotalSecondTable();
       }
       else{
-        this.sumHoursSecond(this.requestSecondHours.monday*(-1));
+        this.total.monday = this.requestSecondHours.monday;
+        this.sumTotalSecondTable();
       }
     }
     if(date===this.requestSecondHours.tuesdayDate){
       this.requestSecondHours.tuesdayApprove = event.detail.value;
       if(this.requestSecondHours.tuesdayApprove=="Y"){
-        this.sumHoursSecond(this.requestSecondHours.tuesday);
+        this.total.tuesday = 0;
+        this.sumTotalSecondTable();
       }
       else{
-        this.sumHoursSecond(this.requestSecondHours.tuesday*(-1));
+        this.total.tuesday = this.requestSecondHours.tuesday;
+        this.sumTotalSecondTable();
       }
     }
     if(date===this.requestSecondHours.wednesdayDate){
       this.requestSecondHours.wednesdayApprove = event.detail.value;
       if(this.requestSecondHours.wednesdayApprove=="Y"){
-        this.sumHoursSecond(this.requestSecondHours.wednesday);
+        this.total.wednesday = 0;
+        this.sumTotalSecondTable();
       }
       else{
-        this.sumHoursSecond(this.requestSecondHours.wednesday*(-1));
+        this.total.wednesday = this.requestSecondHours.wednesday;
+        this.sumTotalSecondTable();
       }
     }
     if(date===this.requestSecondHours.thursdayDate){
       this.requestSecondHours.thursdayApprove =  event.detail.value;
-      if(this.requestSecondHours.thursdayApprove=="Y"){
-        this.sumHoursSecond(this.requestSecondHours.thursday);
+      if(this.requestSecondHours.thursdayApprove=="N"){
+        this.total.thursday = 0;
+        this.sumTotalSecondTable();
       }
       else{
-        this.sumHoursSecond(this.requestSecondHours.thursday*(-1));
+        this.total.thursday = this.requestSecondHours.thursday;
+        this.sumTotalSecondTable();
       }
     }
     if(date===this.requestSecondHours.fridayDate){
       this.requestSecondHours.fridayApprove = event.detail.value;
-      if(this.requestSecondHours.fridayApprove=="Y"){
-        this.sumHoursSecond(this.requestSecondHours.friday);
+      if(this.requestSecondHours.fridayApprove=="N"){
+        this.total.friday = 0;
+        this.sumTotalSecondTable();
       }
       else{
-        this.sumHoursSecond(this.requestSecondHours.friday*(-1));
+        this.total.friday = this.requestSecondHours.friday;
+        this.sumTotalSecondTable();
       }
+      
     }
     if(date===this.requestSecondHours.saturdayDate){
       this.requestSecondHours.saturdayApprove = event.detail.value;
-      if(this.requestSecondHours.saturdayApprove=="Y"){
-        this.sumHoursSecond(this.requestSecondHours.saturday);
+      if(this.requestSecondHours.saturdayApprove=="N"){
+        this.total.saturday = 0;
+        this.sumTotalSecondTable();
       }
       else{
-        this.sumHoursSecond(this.requestSecondHours.saturday*(-1));
+        this.total.saturday = this.requestSecondHours.saturday;
+        this.sumTotalSecondTable();
       }
+     
     }
 
   }
@@ -229,19 +281,33 @@ export class ApproveHoursPage implements OnInit {
     });
   }
 
-  sumHours(num:number){
-    this.sumFirstTable = this.sumFirstTable + num;
-    this.sumTotalHours(num);
+  sumTotalFirstTable(){
+    this.sumFirstTable = this.sumarHours(
+      this.total_1.monday, 
+      this.total_1.tuesday, 
+      this.total_1.wednesday, 
+      this.total_1.thursday, 
+      this.total_1.friday,
+      this.total_1.saturday,
+      this.total_1.sunday);
+      this.sumTotalHours();
   }
 
-  sumHoursSecond(num:number){
-    console.log(num);
-    this.sumSecondTable = this.sumSecondTable + num;
-    this.sumTotalHours(num);
+
+  sumTotalSecondTable(){
+    this.sumSecondTable = this.sumarHours(
+        this.total.monday, 
+        this.total.tuesday, 
+        this.total.wednesday, 
+        this.total.thursday, 
+        this.total.friday,
+        this.total.saturday,
+        this.total.sunday);
+    this.sumTotalHours();
   }
 
-  sumTotalHours(total:number){
-    this.sumTotal = this.sumTotal + total;
+  sumTotalHours(){
+    this.sumTotal = this.sumSecondTable + this.sumFirstTable;
   }
 
   postApproveHoursService(){
@@ -258,6 +324,13 @@ export class ApproveHoursPage implements OnInit {
 
   getUser(){
     return this.activateRoute.snapshot.paramMap.get('username');
+  }
+
+  sumarHours(...valores:number[]) {
+    let suma=0;
+    for(let x=0;x<valores.length;x++)
+      suma+=valores[x];
+    return suma;
   }
 
 }

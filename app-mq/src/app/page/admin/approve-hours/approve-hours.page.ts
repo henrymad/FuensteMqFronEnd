@@ -71,7 +71,7 @@ export class ApproveHoursPage implements OnInit {
         this.sumTotalFirstTable();
       }
       else{
-        this.total_1.sunday = this.requestSecondHours.sunday;
+        this.total_1.sunday = this.requestHours.sunday;
         this.sumTotalFirstTable();
       }
     }
@@ -82,7 +82,7 @@ export class ApproveHoursPage implements OnInit {
         this.sumTotalFirstTable();
       }
       else{
-        this.total_1.monday = this.requestSecondHours.monday;
+        this.total_1.monday = this.requestHours.monday;
         this.sumTotalFirstTable();
       }
     }
@@ -93,7 +93,7 @@ export class ApproveHoursPage implements OnInit {
         this.sumTotalFirstTable();
       }
       else{
-        this.total_1.tuesday = this.requestSecondHours.tuesday;
+        this.total_1.tuesday = this.requestHours.tuesday;
         this.sumTotalFirstTable();
       }
     }
@@ -104,7 +104,7 @@ export class ApproveHoursPage implements OnInit {
         this.sumTotalFirstTable();
       }
       else{
-        this.total_1.wednesday = this.requestSecondHours.wednesday;
+        this.total_1.wednesday = this.requestHours.wednesday;
         this.sumTotalFirstTable();
       }
     }
@@ -115,7 +115,7 @@ export class ApproveHoursPage implements OnInit {
         this.sumTotalFirstTable();
       }
       else{
-        this.total_1.thursday = this.requestSecondHours.thursday;
+        this.total_1.thursday = this.requestHours.thursday;
         this.sumTotalFirstTable();
       }
     }
@@ -126,7 +126,7 @@ export class ApproveHoursPage implements OnInit {
         this.sumTotalFirstTable();
       }
       else{
-        this.total_1.friday = this.requestSecondHours.friday;
+        this.total_1.friday = this.requestHours.friday;
         this.sumTotalFirstTable();
       }
     }
@@ -137,7 +137,7 @@ export class ApproveHoursPage implements OnInit {
         this.sumTotalFirstTable();
       }
       else{
-        this.total_1.saturday = this.requestSecondHours.saturday;
+        this.total_1.saturday = this.requestHours.saturday;
         this.sumTotalFirstTable();
       }
     }
@@ -283,13 +283,13 @@ export class ApproveHoursPage implements OnInit {
 
   sumTotalFirstTable(){
     this.sumFirstTable = this.sumarHours(
-      this.total.monday, 
-      this.total.tuesday, 
-      this.total.wednesday, 
-      this.total.thursday, 
-      this.total.friday,
-      this.total.saturday,
-      this.total.sunday);
+      this.total_1.monday, 
+      this.total_1.tuesday, 
+      this.total_1.wednesday, 
+      this.total_1.thursday, 
+      this.total_1.friday,
+      this.total_1.saturday,
+      this.total_1.sunday);
       this.sumTotalHours();
   }
 

@@ -5,6 +5,7 @@ import { Body } from 'src/app/interface/interfaceService';
 import { Storage } from '@capacitor/storage';
 import { ApproveHoursService } from 'src/app/services/approve-hours.service';
 import { Location } from '@angular/common'
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-approve-hours',
@@ -49,8 +50,8 @@ export class ApproveHoursPage implements OnInit {
   constructor(
     private activateRoute: ActivatedRoute,
     private apporveService: ApproveHoursService,
-    private location: Location
-  
+    private location: Location,
+    private alertController: AlertController  
   ) { }
 
   ngOnInit() {
@@ -234,9 +235,19 @@ export class ApproveHoursPage implements OnInit {
     let userName = this.getUser();
     this.apporveService.getTimeSpantApprovation(this.token,userName).subscribe(response => {
       console.log(response.data);
+      if(response.status !== 200){
+        this.errorServiceAlert();
+        this.location.back();
+      }
+      if(response.data.body === null){
+        this.emptyHoursAlert();
+        this.location.back();
+      }
       const [ObjectoUno, ObjectoDos] = response.data.body;
-      console.log(ObjectoUno.sundayDate);
-      console.log(response);
+      if(ObjectoUno.length === 0 && ObjectoDos.length === 0){
+        this.emptyHoursAlert();
+        this.location.back();
+      }
 
       this.requestHours.parameterId = ObjectoUno.parameterId;
       this.requestHours.monday = ObjectoUno.monday;
@@ -311,16 +322,26 @@ export class ApproveHoursPage implements OnInit {
   }
 
   postApproveHoursService(){
-    console.log("entra");
+    if(this.requestHours.sundayApprove === undefined || this.requestHours.mondayApprove === undefined ||
+      this.requestHours.tuesdayApprove === undefined || this.requestHours.wednesdayApprove === undefined ||
+      this.requestHours.thursdayApprove === undefined || this.requestHours.fridayApprove === undefined ||
+      this.requestHours.saturdayApprove === undefined || this.requestSecondHours.sundayApprove === undefined ||
+      this.requestSecondHours.mondayApprove === undefined || this.requestSecondHours.tuesdayApprove === undefined ||
+      this.requestSecondHours.wednesdayApprove === undefined || this.requestSecondHours.thursdayApprove === undefined ||
+      this.requestSecondHours.fridayApprove === undefined || this.requestSecondHours.saturdayApprove === undefined
+    ){
+      this.approvedAlertFaild();
+  }else{
     this.request[0] = this.requestHours;
     this.request[1] = this.requestSecondHours;
     console.log(this.request);
     let userName = this.getUser();
     this.apporveService.postApproveHours(this.token,this.request,userName).subscribe(response => {
-      console.log(response);
-      this.location.back();
-    });    
-  }
+    this.approveHoursdAlert();
+    this.location.back();
+  });
+  } 
+}
 
   getUser(){
     return this.activateRoute.snapshot.paramMap.get('username');
@@ -331,6 +352,50 @@ export class ApproveHoursPage implements OnInit {
     for(let x=0;x<valores.length;x++)
       suma+=valores[x];
     return suma;
+  }
+
+  async approvedAlertFaild() {
+    const alert = await this.alertController.create({
+      header: 'Approve Hours failed',
+      mode:"ios",
+      message: 'Some day remains to be approved, verify!',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
+  async approveHoursdAlert() {
+    const alert = await this.alertController.create({
+      header: 'Saved Successfully!',
+      mode:"ios",
+      message: 'Success approved hours!',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
+  async emptyHoursAlert() {
+    const alert = await this.alertController.create({
+      header: 'There are not Hours',
+      mode:"ios",
+      message: "This user doesn't have hours!",
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
+  async errorServiceAlert() {
+    const alert = await this.alertController.create({
+      header: 'Error',
+      mode:"ios",
+      message: "Sorry, the approved hour service is failing, try later!",
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
 }

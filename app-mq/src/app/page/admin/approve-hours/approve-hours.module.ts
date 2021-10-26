@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ApproveHoursPageRoutingModule } from './approve-hours-routing.module';
 
 import { ApproveHoursPage } from './approve-hours.page';
+import { ComponentModule } from '../../admin/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ApproveHoursPageRoutingModule
+    ApproveHoursPageRoutingModule,
+    ComponentModule
   ],
   declarations: [ApproveHoursPage]
 })

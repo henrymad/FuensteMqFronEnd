@@ -32,7 +32,7 @@ export class ClockInComponent implements OnInit {
   }
 
   getBuildingList(){
-    this.buildingService.getListBuildings(this.token)
+    this.buildingService.getListBuildings(this.token, this.userName)
       .subscribe(res => {
         this.building.listBuilding.push(...res.data);
       })

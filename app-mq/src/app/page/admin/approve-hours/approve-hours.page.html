@@ -14,201 +14,129 @@
 </ion-header>
 
 <ion-content>
-  <table class="container">
-    <tr class="header-table">
-      <th>Day</th>
-      <th>Date</th>
-      <th>Hours</th>
-      <th>
-        <ion-icon style="width: 20px; height: 20px; margin-right: -12px" name="checkbox"></ion-icon>
-      </th>
-      <th>
-        <ion-icon style="width: 20px; height: 20px; margin-right: -2px" name="close-circle"></ion-icon>
-      </th>
-    </tr>
-  </table>
-  <table class="container">
-    <tbody *ngFor="let week of hoursFirstTable;">
-      <tr>
-        <td class="row-day">Sun</td>
-        <td class="row-date">{{week.sundayDate}}</td>
-        <td class="row-hours">{{week.sunday}} Hours</td>
-        <td class="row-check">
-          <ion-radio-group (ionChange)="setApprove($event, week.sundayDate)">
-            <ion-radio style="right: 10%;" value="Y"></ion-radio>
-            <ion-radio style="left: 10%;" value="N"></ion-radio>
+  <ion-grid class="ion-no-padding">
+    <ion-row  class="ion-no-padding">
+      <ion-col class="ion-no-padding header-table">
+        Day
+      </ion-col>
+      <ion-col  class="ion-no-padding header-table">
+        Date
+      </ion-col>
+      <ion-col  class="ion-no-padding header-table">
+        Hours
+      </ion-col>
+      <ion-col  class="ion-no-padding header-table icons">
+        <div>
+          <img 
+              src="../../../../assets/icon/checkbox.svg" 
+              alt="checkbox"
+              style="width: 22px;"
+            />
+        </div>
+        <div>
+          <img 
+          src="../../../../assets/icon/close-circle.svg" 
+          alt="checkbox"
+          style="width: 24px;"
+        />
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row  class="ion-no-padding" *ngFor = "let week of weekFirst">
+      <ion-col class="ion-no-padding"> 
+        <div  class="row-day">
+          <span class="size-data">{{week.day}}</span>
+        </div>
+      </ion-col>
+      <ion-col class="ion-no-padding"> 
+        <div class="row-date">
+          <span class="size-data">{{week.date}}</span>
+        </div>
+      </ion-col>
+      <ion-col class="ion-no-padding"> 
+        <div class="row-hours">
+          <span class="size-data mq-font-bold" >{{week.hours}} HOURS</span>
+        </div>
+      </ion-col>
+      <ion-col class="ion-no-padding"> 
+        <div class="row-check">
+          <ion-radio-group mode="md" (ionChange)="setApprove($event, week.date)" class="content-radio-button">
+            <ion-radio value="Y"></ion-radio>
+            <ion-radio value="N"></ion-radio>
           </ion-radio-group>
-        </td>
-      </tr>
-      <tr>
-        <td class="row-day">Mon</td>
-        <td class="row-date">{{week.mondayDate}}</td>
-        <td class="row-hours">{{week.monday}} Hours</td>
-        <td class="row-check">
-          <ion-radio-group (ionChange)="setApprove($event, week.mondayDate)">
-            <ion-radio style="right: 10%;" value="Y"></ion-radio>
-            <ion-radio style="left: 10%;" value="N"></ion-radio>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-no-padding" style="border-bottom: 1rem solid #ffff;">
+      <ion-col class="ion-no-padding weekly-row" size="9">
+        <span class="size-weekly-total">
+          Weekly Total Hours
+        </span>
+        
+      </ion-col>
+      <ion-col size="3" class="total-hours-row">
+        <span style="color: #ffff;font-size: 14px;"class="mq-font-bold">{{sumFirstTable}} HOURS</span>
+      </ion-col>
+    </ion-row>
+    <ion-row  class="ion-no-padding" *ngFor = "let week of  weekSecond">
+      <ion-col class="ion-no-padding"> 
+        <div  class="row-day">
+          <span class="size-data">{{week.day}}</span>
+        </div>
+      </ion-col>
+      <ion-col class="ion-no-padding"> 
+        <div class="row-date">
+          <span class="size-data">{{week.date}}</span>
+        </div>
+      </ion-col>
+      <ion-col class="ion-no-padding"> 
+        <div class="row-hours">
+          <span class="size-data mq-font-bold" >{{week.hours}} HOURS</span>
+        </div>
+      </ion-col>
+      <ion-col class="ion-no-padding"> 
+        <div class="row-check">
+          <ion-radio-group mode="md" (ionChange)="setApproveSecond($event, week.date)" class="content-radio-button">
+            <ion-radio value="Y"></ion-radio>
+            <ion-radio value="N"></ion-radio>
           </ion-radio-group>
-        </td>
-      </tr>
-      <tr>
-        <td class="row-day">Tue</td>
-        <td class="row-date">{{week.tuesdayDate}}</td>
-        <td class="row-hours">{{week.tuesday}} Hours</td>
-        <td class="row-check">
-          <ion-radio-group (ionChange)="setApprove($event, week.tuesdayDate)">
-            <ion-radio style="right: 10%;" value="Y"></ion-radio>
-            <ion-radio style="left: 10%;" value="N"></ion-radio>
-          </ion-radio-group>
-        </td>
-      </tr>
-      <tr>
-        <td class="row-day">Wed</td>
-        <td class="row-date">{{week.wednesdayDate}}</td>
-        <td class="row-hours">{{week.wednesday}} Hours</td>
-        <td class="row-check">
-          <ion-radio-group (ionChange)="setApprove($event, week.wednesdayDate)">
-            <ion-radio style="right: 10%;" value="Y"></ion-radio>
-            <ion-radio style="left: 10%;" value="N"></ion-radio>
-          </ion-radio-group>
-        </td>
-      </tr>
-      <tr>
-        <td class="row-day">Thu</td>
-        <td class="row-date">{{week.thursdayDate}}</td>
-        <td class="row-hours">{{week.thursday}} Hours</td>
-        <td class="row-check">
-          <ion-radio-group (ionChange)="setApprove($event, week.thursdayDate)">
-            <ion-radio style="right: 10%;" value="Y"></ion-radio>
-            <ion-radio style="left: 10%;" value="N"></ion-radio>
-          </ion-radio-group>
-        </td>
-      </tr>
-      <tr>
-        <td class="row-day">Fri</td>
-        <td class="row-date">{{week.fridayDate}}</td>
-        <td class="row-hours">{{week.friday}} Hours</td>
-        <td class="row-check">
-          <ion-radio-group (ionChange)="setApprove($event, week.fridayDate)">
-            <ion-radio style="right: 10%;" value="Y"></ion-radio>
-            <ion-radio style="left: 10%;" value="N"></ion-radio>
-          </ion-radio-group>
-        </td>
-      </tr>
-      <tr>
-        <td class="row-day">Sat</td>
-        <td class="row-date">{{week.saturdayDate}}</td>
-        <td class="row-hours">{{week.saturday}} Hours</td>
-        <td class="row-check">
-          <ion-radio-group (ionChange)="setApprove($event, week.saturdayDate)">
-            <ion-radio style="right: 10%;" value="Y"></ion-radio>
-            <ion-radio style="left: 10%;" value="N"></ion-radio>
-          </ion-radio-group>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <table class="weekly-total-hours-row">
-    <tr>
-      <td class="weekly-row">Weekly Total Hours</td>
-      <th class="total-hours-row">{{sumFirstTable}} Horas</th>
-    </tr>
-  </table> 
-  <br>
-  <table class="container">
-    <tbody *ngFor="let week of hoursSecondTable;">
-      <tr>
-        <td class="row-day">Sun</td>
-        <td class="row-date">{{week.sundayDate}}</td>
-        <td class="row-hours">{{week.sunday}} Hours</td>
-        <td class="row-check">
-          <ion-radio-group (ionChange)="setApproveSecond($event, week.sundayDate)">
-            <ion-radio style="right: 10%;" value="Y"></ion-radio>
-            <ion-radio style="left: 10%;" value="N"></ion-radio>
-          </ion-radio-group>
-        </td>
-      </tr>
-      <tr>
-        <td class="row-day">Mon</td>
-        <td class="row-date">{{week.mondayDate}}</td>
-        <td class="row-hours">{{week.monday}} Hours</td>
-        <td class="row-check">
-          <ion-radio-group (ionChange)="setApproveSecond($event, week.mondayDate)">
-            <ion-radio style="right: 10%;" value="Y"></ion-radio>
-            <ion-radio style="left: 10%;" value="N"></ion-radio>
-          </ion-radio-group>
-        </td>
-      </tr>
-      <tr>
-        <td class="row-day">Tue</td>
-        <td class="row-date">{{week.tuesdayDate}}</td>
-        <td class="row-hours">{{week.tuesday}} Hours</td>
-        <td class="row-check">
-          <ion-radio-group (ionChange)="setApproveSecond($event, week.tuesdayDate)">
-            <ion-radio style="right: 10%;" value="Y"></ion-radio>
-            <ion-radio style="left: 10%;" value="N"></ion-radio>
-          </ion-radio-group>
-        </td>
-      </tr>
-      <tr>
-        <td class="row-day">Wed</td>
-        <td class="row-date">{{week.wednesdayDate}}</td>
-        <td class="row-hours">{{week.wednesday}} Hours</td>
-        <td class="row-check">
-          <ion-radio-group (ionChange)="setApproveSecond($event, week.wednesdayDate)">
-            <ion-radio style="right: 10%;" value="Y"></ion-radio>
-            <ion-radio style="left: 10%;" value="N"></ion-radio>
-          </ion-radio-group>
-        </td>
-      </tr>
-      <tr>
-        <td class="row-day">Thu</td>
-        <td class="row-date">{{week.thursdayDate}}</td>
-        <td class="row-hours">{{week.thursday}} Hours</td>
-        <td class="row-check">
-          <ion-radio-group (ionChange)="setApproveSecond($event, week.thursdayDate)">
-            <ion-radio style="right: 10%;" value="Y"></ion-radio>
-            <ion-radio style="left: 10%;" value="N"></ion-radio>
-          </ion-radio-group>
-        </td>
-      </tr>
-      <tr>
-        <td class="row-day">Fri</td>
-        <td class="row-date">{{week.fridayDate}}</td>
-        <td class="row-hours">{{week.friday}} Hours</td>
-        <td class="row-check">
-          <ion-radio-group (ionChange)="setApproveSecond($event, week.fridayDate)">
-            <ion-radio style="right: 10%;" value="Y"></ion-radio>
-            <ion-radio style="left: 10%;" value="N"></ion-radio>
-          </ion-radio-group>
-        </td>
-      </tr>
-      <tr>
-        <td class="row-day">Sat</td>
-        <td class="row-date">{{week.saturdayDate}}</td>
-        <td class="row-hours">{{week.saturday}} Hours</td>
-        <td class="row-check">
-          <ion-radio-group (ionChange)="setApproveSecond($event, week.saturdayDate)">
-            <ion-radio style="right: 10%;" value="Y"></ion-radio>
-            <ion-radio style="left: 10%;" value="N"></ion-radio>
-          </ion-radio-group>
-        </td>
-      </tr>
-    </tbody>
-  </table> 
-  <table class="weekly-total-hours-row">
-    <tr>
-      <td class="weekly-row">Weekly Total Hours</td>
-      <th class="total-hours-row-second-table">{{sumSecondTable}} Horas</th>
-    </tr>
-  </table>
-  <table class="weekly-total-hours-row">
-    <tr>
-      <td class="combined-total-hours-row">Combined Total Hours</td>
-      <th class="combined-hours-row">{{sumTotal}} Horas</th>
-    </tr>
-  </table>
-  <br>
-  <ion-button class="mq-font-bold" color="light" expand="block" (click)="postApproveHoursService()">APPROVE</ion-button>
-  
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-no-padding">
+      <ion-col class="ion-no-padding weekly-row" size="9">
+        <span class="size-weekly-total">
+          Weekly Total Hours
+        </span>
+        
+      </ion-col>
+      <ion-col size="3" class="total-hours-row">
+        <span style="color: #ffff;font-size: 14px;"class="mq-font-bold" >{{sumSecondTable}} HOURS</span>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-no-padding">
+      <ion-col class="ion-no-padding combined-total-hours-row" size="9">
+        <span class="mq-font-bold size-weekly-total">
+          Combined Total Hours
+        </span>
+        
+      </ion-col>
+      <ion-col size="3" class="combined-hours-row">
+        <span style="color: #ffff;font-size: 14px;"class="mq-font-bold" >{{sumTotal}} HOURS</span>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-no-padding"> 
+      <ion-col class="ion-no-padding">
+        <ion-button 
+          class="mq-font-bold" 
+          color="light" 
+          expand="block" 
+          (click)="postApproveHoursService()"
+        >
+          APPROVE
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid> 
 </ion-content>
+<tab-admin></tab-admin>

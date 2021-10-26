@@ -9,7 +9,7 @@
  <ion-content>
    <div *ngIf = "isState(state);then esStaff else esBuilding"></div>
    <ng-template #esStaff>
-     <div class="mq-content-background-gray">
+     <div class="mq-background-gray">
       <div class="content-staff">
         <span>Staff</span>
         <div class="mq-dflex ion-align-items-center">
@@ -66,7 +66,7 @@
      </div>
    </ng-template>
    <ng-template #esBuilding>
-     <div class="mq-content-background-gray"> 
+     <div class="mq-background-gray"> 
        <div class="content-building">
          <span>Building</span>
        </div>

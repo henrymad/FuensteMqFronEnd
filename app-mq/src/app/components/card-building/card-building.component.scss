@@ -10,16 +10,31 @@
   font-weight:600 ;
 }
 
-@media(min-width:800px){
-
-.tex-size {
-  font-size: 12px;
-  margin-bottom: 5px;
+.card{
+  display: flex;
+  align-items: center;
 }
 
-.text-size-name {
-  font-size: 16px;
-  margin-bottom: 1px;
-  font-weight:600 ;
+.mq-card{
+  height:100px!important
 }
+
+@media(min-width:500px){
+
+  .tex-size {
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
+
+  .text-size-name {
+    font-size: 16px;
+    margin-bottom: 1px;
+    font-weight:600 ;
+  }
+}
+
+@media(max-width:370px){
+  .mq-card{
+    height:100px!important
+  }
 }

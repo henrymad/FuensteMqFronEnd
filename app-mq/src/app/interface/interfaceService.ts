@@ -64,5 +64,10 @@ export interface Body {
   endWeekDate: string;
 }
 
-interface Headers {
+export interface Week {
+  day:string;
+  hours: number;
+  date: string;
+  approve?: any;
+  dayTotal?:number;
 }

@@ -100,4 +100,11 @@ export class EmployeePage implements OnInit {
     return state.value;
   }
 
+  doRefresh(event) {
+    setTimeout(() => {
+      this.setEmployee();
+      event.target.complete();
+    }, 1000);
+  }
+
 }

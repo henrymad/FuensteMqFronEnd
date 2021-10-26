@@ -1,11 +1,19 @@
 <ion-tab-bar 
   slot="bottom" 
-  class="mq-tab"
+  class="mq-tab content-icon"
 >
-  <ion-tab-button (click)="goRegister()">
-    <ion-icon name="person-add"></ion-icon>
+  <ion-tab-button (click)="goRegister()" >
+    <img 
+        src="../../../../../assets/icon/person-add.svg" 
+        alt="add person"
+        class="icon-add"
+      />
   </ion-tab-button>
   <ion-tab-button (click)="goProfile()">
-    <ion-icon name="person"></ion-icon>
+    <img 
+      src="../../../../../assets/icon/person-sharp.svg" 
+      alt="add person"
+      class="icon-add"
+    />
   </ion-tab-button>
 </ion-tab-bar>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DetailWeek } from 'src/app/class/utils';
-import { Body } from 'src/app/interface/interfaceService';
+import { Body, Week } from 'src/app/interface/interfaceService';
 import { Storage } from '@capacitor/storage';
 import { ApproveHoursService } from 'src/app/services/approve-hours.service';
 import { Location } from '@angular/common'
@@ -24,6 +24,9 @@ export class ApproveHoursPage implements OnInit {
   sumFirstTable: number=0;
   sumSecondTable: number=0;
   sumTotal: number = 0;
+  days: Array<string> = ["sunday","monday", "tuesday", "wednesday", "thusday", "friday", "satuday"];
+  weekFirst: Array<Week> = [];
+  weekSecond: Array<Week> = [];
 
   total = {
     monday:0,
@@ -51,11 +54,12 @@ export class ApproveHoursPage implements OnInit {
     private activateRoute: ActivatedRoute,
     private apporveService: ApproveHoursService,
     private location: Location,
-    private alertController: AlertController  
+    private alertController: AlertController
+  
   ) { }
 
   ngOnInit() {
-    this.getHoursService();
+    this.getHoursService();    
   }
 
   async getToken(): Promise<string>{
@@ -64,171 +68,40 @@ export class ApproveHoursPage implements OnInit {
   }
 
   setApprove(event, date:any){
-    console.log(event.detail.value);
-    if(date===this.requestHours.sundayDate){
-      this.requestHours.sundayApprove = event.detail.value;
-      if(this.requestHours.sundayApprove =="N"){
-        this.total_1.sunday = 0;
-        this.sumTotalFirstTable();
-      }
-      else{
-        this.total_1.sunday = this.requestHours.sunday;
-        this.sumTotalFirstTable();
-      }
-    }
-    if(date===this.requestHours.mondayDate){
-      this.requestHours.mondayApprove = event.detail.value;
-      if(this.requestHours.mondayApprove="N"){
-        this.total_1.monday = 0;
-        this.sumTotalFirstTable();
-      }
-      else{
-        this.total_1.monday = this.requestHours.monday;
-        this.sumTotalFirstTable();
+    for(let item of this.weekFirst){
+      if(date == item.date){
+        item.approve = event.detail.value;
+        if(item.approve =="N"){
+          item.dayTotal = 0;
+          this.sumTotalFirstTable();
+          return;
+        }
+        else{
+          item.dayTotal = item.hours;
+          this.sumTotalFirstTable();
+          return;
+        }
       }
     }
-    if(date===this.requestHours.tuesdayDate){
-      this.requestHours.tuesdayApprove = event.detail.value;
-      if(this.requestHours.tuesdayApprove=="N"){
-        this.total_1.tuesday = 0;
-        this.sumTotalFirstTable();
-      }
-      else{
-        this.total_1.tuesday = this.requestHours.tuesday;
-        this.sumTotalFirstTable();
-      }
-    }
-    if(date===this.requestHours.wednesdayDate){
-      this.requestHours.wednesdayApprove = event.detail.value;
-      if(this.requestHours.wednesdayApprove=="N"){
-        this.total_1.wednesday = 0;
-        this.sumTotalFirstTable();
-      }
-      else{
-        this.total_1.wednesday = this.requestHours.wednesday;
-        this.sumTotalFirstTable();
-      }
-    }
-    if(date===this.requestHours.thursdayDate){
-      this.requestHours.thursdayApprove =  event.detail.value;
-      if(this.requestHours.thursdayApprove=="N"){
-        this.total_1.thursday = 0;
-        this.sumTotalFirstTable();
-      }
-      else{
-        this.total_1.thursday = this.requestHours.thursday;
-        this.sumTotalFirstTable();
-      }
-    }
-    if(date===this.requestHours.fridayDate){
-      this.requestHours.fridayApprove = event.detail.value;
-      if(this.requestHours.fridayApprove=="N"){
-        this.total_1.friday = 0;
-        this.sumTotalFirstTable();
-      }
-      else{
-        this.total_1.friday = this.requestHours.friday;
-        this.sumTotalFirstTable();
-      }
-    }
-    if(date===this.requestHours.saturdayDate){
-      this.requestHours.saturdayApprove = event.detail.value;
-      if(this.requestHours.saturdayApprove=="N"){
-        this.total_1.saturday = 0;
-        this.sumTotalFirstTable();
-      }
-      else{
-        this.total_1.saturday = this.requestHours.saturday;
-        this.sumTotalFirstTable();
-      }
-    }
-
   }
 
   setApproveSecond(event, date:any){
-    console.log(event.detail.value);
-    if(date===this.requestSecondHours.sundayDate){
-      this.requestSecondHours.sundayApprove = event.detail.value;
-      if(this.requestSecondHours.sundayApprove=="Y"){
-        this.total.sunday = 0;
-        this.sumTotalSecondTable();
+    for(let item of this.weekSecond){
+      if(date == item.date){
+        item.approve = event.detail.value;
+        if(item.approve =="N"){
+          item.dayTotal = 0;
+          this.sumTotalSecondTable();
+          return;
+        }
+        else{
+          item.dayTotal = item.hours;
+          this.sumTotalSecondTable();
+          return;
+        }
       }
-      else{
-        this.total.sunday = this.requestSecondHours.sunday;
-        this.sumTotalSecondTable();
-      }
-    }
-    if(date===this.requestSecondHours.mondayDate){
-      this.requestSecondHours.mondayApprove = event.detail.value;
-      if(this.requestSecondHours.mondayApprove=="Y"){
-        this.total.monday = 0;
-        this.sumTotalSecondTable();
-      }
-      else{
-        this.total.monday = this.requestSecondHours.monday;
-        this.sumTotalSecondTable();
-      }
-    }
-    if(date===this.requestSecondHours.tuesdayDate){
-      this.requestSecondHours.tuesdayApprove = event.detail.value;
-      if(this.requestSecondHours.tuesdayApprove=="Y"){
-        this.total.tuesday = 0;
-        this.sumTotalSecondTable();
-      }
-      else{
-        this.total.tuesday = this.requestSecondHours.tuesday;
-        this.sumTotalSecondTable();
-      }
-    }
-    if(date===this.requestSecondHours.wednesdayDate){
-      this.requestSecondHours.wednesdayApprove = event.detail.value;
-      if(this.requestSecondHours.wednesdayApprove=="Y"){
-        this.total.wednesday = 0;
-        this.sumTotalSecondTable();
-      }
-      else{
-        this.total.wednesday = this.requestSecondHours.wednesday;
-        this.sumTotalSecondTable();
-      }
-    }
-    if(date===this.requestSecondHours.thursdayDate){
-      this.requestSecondHours.thursdayApprove =  event.detail.value;
-      if(this.requestSecondHours.thursdayApprove=="N"){
-        this.total.thursday = 0;
-        this.sumTotalSecondTable();
-      }
-      else{
-        this.total.thursday = this.requestSecondHours.thursday;
-        this.sumTotalSecondTable();
-      }
-    }
-    if(date===this.requestSecondHours.fridayDate){
-      this.requestSecondHours.fridayApprove = event.detail.value;
-      if(this.requestSecondHours.fridayApprove=="N"){
-        this.total.friday = 0;
-        this.sumTotalSecondTable();
-      }
-      else{
-        this.total.friday = this.requestSecondHours.friday;
-        this.sumTotalSecondTable();
-      }
-      
-    }
-    if(date===this.requestSecondHours.saturdayDate){
-      this.requestSecondHours.saturdayApprove = event.detail.value;
-      if(this.requestSecondHours.saturdayApprove=="N"){
-        this.total.saturday = 0;
-        this.sumTotalSecondTable();
-      }
-      else{
-        this.total.saturday = this.requestSecondHours.saturday;
-        this.sumTotalSecondTable();
-      }
-     
-    }
-
+   }
   }
-
 
   async getHoursService(){
     this.token = await this.getToken();
@@ -250,38 +123,99 @@ export class ApproveHoursPage implements OnInit {
       }
 
       this.requestHours.parameterId = ObjectoUno.parameterId;
-      this.requestHours.monday = ObjectoUno.monday;
-      this.requestHours.mondayDate = ObjectoUno.mondayDate;
-      this.requestHours.tuesday = ObjectoUno.tuesday;
-      this.requestHours.tuesdayDate = ObjectoUno.tuesdayDate;
-      this.requestHours.wednesday = ObjectoUno.wednesday;
-      this.requestHours.wednesdayDate = ObjectoUno.wednesdayDate;
-      this.requestHours.thursday = ObjectoUno.thursday;
-      this.requestHours.thursdayDate = ObjectoUno.thursdayDate;
-      this.requestHours.friday = ObjectoUno.friday;
-      this.requestHours.fridayDate = ObjectoUno.fridayDate;
-      this.requestHours.saturday = ObjectoUno.saturday;
-      this.requestHours.saturdayDate = ObjectoUno.saturdayDate;
-      this.requestHours.sunday = ObjectoUno.sunday;
-      this.requestHours.sundayDate = ObjectoUno.sundayDate;
+      this.weekFirst.push({
+        day: "Sun",
+        hours: ObjectoUno.sunday,
+        date: ObjectoUno.sundayDate,  
+        dayTotal:0,
+  
+      },
+    
+      {
+        day: "Mon",
+        hours: ObjectoUno.monday,
+        date: ObjectoUno.mondayDate,
+        dayTotal:0,
+        
+      },
+      {
+        day: "Tue",
+        hours: ObjectoUno.tuesday,
+        date: ObjectoUno.tuesdayDate,
+        dayTotal:0,
+      },
+      {
+        day: "Wed",
+        hours: ObjectoUno.wednesday,
+        date: ObjectoUno.wednesdayDate,
+        dayTotal:0,
+      },
+      {
+        day: "Thu",
+        hours: ObjectoUno.thursday,
+        date: ObjectoUno.thursdayDate,
+        dayTotal:0,
+      },
+      {
+        day: "Fri",
+        hours: ObjectoUno.friday,
+        date: ObjectoUno.fridayDate,
+        dayTotal:0,
+      },
+      {
+        day: "Sat",
+        hours: ObjectoUno.saturday,
+        date: ObjectoUno.saturdayDate,
+        dayTotal:0,
+      });
       this.requestHours.listTimestampId = ObjectoUno.listTimestampId;
-      this.requestHours.listTimestampId[0] = 1;
+      this.requestHours.listTimestampId[0] = 1;  
 
-      this.requestSecondHours.parameterId = ObjectoDos.parameterId;
-      this.requestSecondHours.monday = ObjectoDos.monday;
-      this.requestSecondHours.mondayDate = ObjectoDos.mondayDate;
-      this.requestSecondHours.tuesday = ObjectoDos.tuesday;
-      this.requestSecondHours.tuesdayDate = ObjectoDos.tuesdayDate;
-      this.requestSecondHours.wednesday = ObjectoDos.wednesday;
-      this.requestSecondHours.wednesdayDate = ObjectoDos.wednesdayDate;
-      this.requestSecondHours.thursday = ObjectoDos.thursday;
-      this.requestSecondHours.thursdayDate = ObjectoDos.thursdayDate;
-      this.requestSecondHours.friday = ObjectoDos.friday;
-      this.requestSecondHours.fridayDate = ObjectoDos.fridayDate;
-      this.requestSecondHours.saturday = ObjectoDos.saturday;
-      this.requestSecondHours.saturdayDate = ObjectoDos.saturdayDate;
-      this.requestSecondHours.sunday = ObjectoDos.sunday;
-      this.requestSecondHours.sundayDate = ObjectoDos.sundayDate;
+      this.weekSecond.push({
+        day: "Sun",
+        hours: ObjectoDos.sunday,
+        date: ObjectoDos.sundayDate,  
+        dayTotal:0,
+  
+      },
+      {
+        day: "Mon",
+        hours: ObjectoDos.monday,
+        date: ObjectoDos.mondayDate,
+        dayTotal:0,
+        
+      },
+      {
+        day: "Tue",
+        hours: ObjectoDos.tuesday,
+        date: ObjectoDos.tuesdayDate,
+        dayTotal:0,
+      },
+      {
+        day: "Wed",
+        hours: ObjectoDos.wednesday,
+        date: ObjectoDos.wednesdayDate,
+        dayTotal:0,
+      },
+      {
+        day: "Thu",
+        hours: ObjectoDos.thursday,
+        date:  ObjectoDos.thursdayDate,
+        dayTotal:0,
+      },
+      {
+        day: "Fri",
+        hours: ObjectoDos.friday,
+        date: ObjectoDos.fridayDate,
+        dayTotal:0,
+      },
+      {
+        day: "Sat",
+        hours: ObjectoDos.saturday,
+        date: ObjectoDos.saturdayDate,
+        dayTotal:0,
+      });
+
       this.requestSecondHours.listTimestampId = ObjectoDos.listTimestampId;
       this.requestSecondHours.listTimestampId[0] = 2;
 
@@ -293,27 +227,13 @@ export class ApproveHoursPage implements OnInit {
   }
 
   sumTotalFirstTable(){
-    this.sumFirstTable = this.sumarHours(
-      this.total_1.monday, 
-      this.total_1.tuesday, 
-      this.total_1.wednesday, 
-      this.total_1.thursday, 
-      this.total_1.friday,
-      this.total_1.saturday,
-      this.total_1.sunday);
-      this.sumTotalHours();
+    this.sumFirstTable = this.totalHours(this.weekFirst);
+    this.sumTotalHours();
   }
 
 
   sumTotalSecondTable(){
-    this.sumSecondTable = this.sumarHours(
-        this.total.monday, 
-        this.total.tuesday, 
-        this.total.wednesday, 
-        this.total.thursday, 
-        this.total.friday,
-        this.total.saturday,
-        this.total.sunday);
+    this.sumSecondTable = this.totalHours(this.weekSecond);
     this.sumTotalHours();
   }
 
@@ -321,36 +241,56 @@ export class ApproveHoursPage implements OnInit {
     this.sumTotal = this.sumSecondTable + this.sumFirstTable;
   }
 
+  setRequestHours(request:DetailWeek){
+    request.sundayApprove = this.weekFirst[0].approve;
+    request.mondayApprove = this.weekFirst[1].approve;
+    request.tuesdayApprove = this.weekFirst[2].approve;
+    request.wednesdayApprove = this.weekFirst[3].approve;
+    request.thursdayApprove = this.weekFirst[4].approve;
+    request.fridayApprove = this.weekFirst[5].approve;
+    request.saturdayApprove = this.weekFirst[6].approve;
+    return request;
+  }
+
   postApproveHoursService(){
-    if(this.requestHours.sundayApprove === undefined || this.requestHours.mondayApprove === undefined ||
-      this.requestHours.tuesdayApprove === undefined || this.requestHours.wednesdayApprove === undefined ||
-      this.requestHours.thursdayApprove === undefined || this.requestHours.fridayApprove === undefined ||
-      this.requestHours.saturdayApprove === undefined || this.requestSecondHours.sundayApprove === undefined ||
-      this.requestSecondHours.mondayApprove === undefined || this.requestSecondHours.tuesdayApprove === undefined ||
-      this.requestSecondHours.wednesdayApprove === undefined || this.requestSecondHours.thursdayApprove === undefined ||
-      this.requestSecondHours.fridayApprove === undefined || this.requestSecondHours.saturdayApprove === undefined
-    ){
-      this.approvedAlertFaild();
-  }else{
-    this.request[0] = this.requestHours;
-    this.request[1] = this.requestSecondHours;
-    console.log(this.request);
-    let userName = this.getUser();
-    this.apporveService.postApproveHours(this.token,this.request,userName).subscribe(response => {
-    this.approveHoursdAlert();
-    this.location.back();
-  });
-  } 
-}
+    if(this.isSelect(this.weekFirst, this.weekSecond)){
+        this.approvedAlertFaild();
+    }
+    else{
+      this.request[0] = this.setRequestHours(this.requestHours) ;
+      this.request[1] = this.setRequestHours(this.requestSecondHours);
+      console.log(this.request);
+      let userName = this.getUser();
+      this.apporveService.postApproveHours(this.token,this.request,userName).subscribe(response => {
+      this.approveHoursdAlert();
+      this.location.back();
+    });
+    } 
+  }
 
   getUser(){
     return this.activateRoute.snapshot.paramMap.get('username');
   }
 
-  sumarHours(...valores:number[]) {
-    let suma=0;
-    for(let x=0;x<valores.length;x++)
-      suma+=valores[x];
+  isSelect(firstWeek:Week[], secondWeek:Week[]):boolean{
+    for(let item of firstWeek){
+      if(item.approve == undefined){
+        return true;
+      }
+    }
+    for(let item of secondWeek){
+      if(item.approve == undefined){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  totalHours(week:Array<Week>):number{
+    let suma = 0;
+    week.forEach(item => {
+      suma+=item.dayTotal;
+    });
     return suma;
   }
 

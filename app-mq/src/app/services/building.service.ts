@@ -9,18 +9,19 @@ import { delay } from 'rxjs/operators';
 })
 export class BuildingService {
 
-  URL:string = HOST.concat("/mqservices/building/list");
+  URL:string = HOST.concat("/mqservices/building/list-user");
   URL_LIST_BUILDING = HOST.concat("/mqservices/building/list-information");
   URL_EMPLOYEE_BUILDING = HOST.concat("/mqservices/building/information")
 
   constructor() { }
 
-  getListBuildings(token:string): Observable<any>{
+  getListBuildings(token:string, userName:string): Observable<any>{
     const options: HttpOptions = {
       url: this.URL,
       headers:{
         'Authorization':`${TOKEN_TYPE} ${token}`
       },
+      params: {username: `${userName}`} 
     }
     return from(Http.get(options));
   }

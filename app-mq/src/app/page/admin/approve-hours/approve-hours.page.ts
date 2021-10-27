@@ -123,6 +123,8 @@ export class ApproveHoursPage implements OnInit {
       }
 
       this.requestHours.parameterId = ObjectoUno.parameterId;
+      this.requestHours.listTimestampId = ObjectoUno.listTimestampId;
+      this.requestHours.listTimestampId[0] = 1;
       this.weekFirst.push({
         day: "Sun",
         hours: ObjectoUno.sunday,
@@ -168,9 +170,8 @@ export class ApproveHoursPage implements OnInit {
         date: ObjectoUno.saturdayDate,
         dayTotal:0,
       });
-      this.requestHours.listTimestampId = ObjectoUno.listTimestampId;
-      this.requestHours.listTimestampId[0] = 1;  
-
+      
+  
       this.weekSecond.push({
         day: "Sun",
         hours: ObjectoDos.sunday,
@@ -216,13 +217,10 @@ export class ApproveHoursPage implements OnInit {
         dayTotal:0,
       });
 
+      this.requestSecondHours.parameterId = ObjectoDos.parameterId;
       this.requestSecondHours.listTimestampId = ObjectoDos.listTimestampId;
       this.requestSecondHours.listTimestampId[0] = 2;
-
-      this.responseHours.push( ...response.data.body);
-      this.hoursFirstTable.push(this.responseHours[0]);
-      this.hoursSecondTable.push(this.responseHours[1]);
-
+      
     });
   }
 
@@ -241,14 +239,32 @@ export class ApproveHoursPage implements OnInit {
     this.sumTotal = this.sumSecondTable + this.sumFirstTable;
   }
 
-  setRequestHours(request:DetailWeek){
-    request.sundayApprove = this.weekFirst[0].approve;
-    request.mondayApprove = this.weekFirst[1].approve;
-    request.tuesdayApprove = this.weekFirst[2].approve;
-    request.wednesdayApprove = this.weekFirst[3].approve;
-    request.thursdayApprove = this.weekFirst[4].approve;
-    request.fridayApprove = this.weekFirst[5].approve;
-    request.saturdayApprove = this.weekFirst[6].approve;
+  setRequestHours(request:DetailWeek, week:Week[]):DetailWeek{
+
+    request.sunday = week[0].hours;
+    request.monday = week[1].hours;
+    request.tuesday = week[2].hours;
+    request.wednesday = week[3].hours;
+    request.thursday = week[4].hours;
+    request.friday = week[5].hours;
+    request.saturday = week[6].hours;
+  
+    request.sundayDate = week[0].date;
+    request.mondayDate = week[1].date;
+    request.tuesdayDate = week[2].date;
+    request.wednesdayDate = week[3].date;
+    request.thursdayDate = week[4].date;
+    request.fridayDate = week[5].date;
+    request.saturdayDate = week[6].date;
+
+    request.sundayApprove = week[0].approve;
+    request.mondayApprove = week[1].approve;
+    request.tuesdayApprove = week[2].approve;
+    request.wednesdayApprove = week[3].approve;
+    request.thursdayApprove = week[4].approve;
+    request.fridayApprove = week[5].approve;
+    request.saturdayApprove = week[6].approve;
+
     return request;
   }
 
@@ -257,11 +273,12 @@ export class ApproveHoursPage implements OnInit {
         this.approvedAlertFaild();
     }
     else{
-      this.request[0] = this.setRequestHours(this.requestHours) ;
-      this.request[1] = this.setRequestHours(this.requestSecondHours);
+      this.request[0] = this.setRequestHours(this.requestHours, this.weekFirst) ;
+      this.request[1] = this.setRequestHours(this.requestSecondHours, this.weekSecond);
       console.log(this.request);
       let userName = this.getUser();
       this.apporveService.postApproveHours(this.token,this.request,userName).subscribe(response => {
+        console.log(response);
       this.approveHoursdAlert();
       this.location.back();
     });

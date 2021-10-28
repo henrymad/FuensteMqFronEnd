@@ -66,8 +66,9 @@ export interface Body {
 
 export interface Week {
   day:string;
-  hours: number;
-  date: string;
+  hours?: number;
+  date?: string;
   approve?: any;
   dayTotal?:number;
+  listBuilding?:any[];
 }

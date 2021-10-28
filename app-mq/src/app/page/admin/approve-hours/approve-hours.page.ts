@@ -20,7 +20,7 @@ export class ApproveHoursPage implements OnInit {
   hoursSecondTable: Body[] = [];
   requestHours: DetailWeek = new DetailWeek();
   requestSecondHours: DetailWeek = new DetailWeek();
-  request: any[] = [];
+  request: DetailWeek[] = [];
   sumFirstTable: number=0;
   sumSecondTable: number=0;
   sumTotal: number = 0;
@@ -130,7 +130,7 @@ export class ApproveHoursPage implements OnInit {
         hours: ObjectoUno.sunday,
         date: ObjectoUno.sundayDate,  
         dayTotal:0,
-  
+        listBuilding: ObjectoUno.sundaylistBuilding
       },
     
       {
@@ -138,6 +138,7 @@ export class ApproveHoursPage implements OnInit {
         hours: ObjectoUno.monday,
         date: ObjectoUno.mondayDate,
         dayTotal:0,
+        listBuilding: ObjectoUno.mondaylistBuilding
         
       },
       {
@@ -145,30 +146,36 @@ export class ApproveHoursPage implements OnInit {
         hours: ObjectoUno.tuesday,
         date: ObjectoUno.tuesdayDate,
         dayTotal:0,
+        listBuilding: ObjectoUno.tuesdaylistBuilding
       },
       {
         day: "Wed",
         hours: ObjectoUno.wednesday,
         date: ObjectoUno.wednesdayDate,
         dayTotal:0,
+        listBuilding: ObjectoUno.wednesdayListBuilding
       },
       {
         day: "Thu",
         hours: ObjectoUno.thursday,
         date: ObjectoUno.thursdayDate,
         dayTotal:0,
+        listBuilding: ObjectoUno.thursdayListBuilding
+        
       },
       {
         day: "Fri",
         hours: ObjectoUno.friday,
         date: ObjectoUno.fridayDate,
         dayTotal:0,
+        listBuilding: ObjectoUno.fridayListBuilding
       },
       {
         day: "Sat",
         hours: ObjectoUno.saturday,
         date: ObjectoUno.saturdayDate,
         dayTotal:0,
+        listBuilding: ObjectoUno.saturdayListBuilding
       });
       
   
@@ -177,13 +184,14 @@ export class ApproveHoursPage implements OnInit {
         hours: ObjectoDos.sunday,
         date: ObjectoDos.sundayDate,  
         dayTotal:0,
-  
+        listBuilding: ObjectoDos.sundayListBuilding
       },
       {
         day: "Mon",
         hours: ObjectoDos.monday,
         date: ObjectoDos.mondayDate,
         dayTotal:0,
+        listBuilding: ObjectoDos.mondayListBuilding
         
       },
       {
@@ -191,31 +199,38 @@ export class ApproveHoursPage implements OnInit {
         hours: ObjectoDos.tuesday,
         date: ObjectoDos.tuesdayDate,
         dayTotal:0,
+        listBuilding: ObjectoDos.tuesdayListBuilding
       },
       {
         day: "Wed",
         hours: ObjectoDos.wednesday,
         date: ObjectoDos.wednesdayDate,
         dayTotal:0,
+        listBuilding: ObjectoDos.wednesdayListBuilding
       },
       {
         day: "Thu",
         hours: ObjectoDos.thursday,
         date:  ObjectoDos.thursdayDate,
         dayTotal:0,
+        listBuilding: ObjectoDos.thursdayListBuilding
       },
       {
         day: "Fri",
         hours: ObjectoDos.friday,
         date: ObjectoDos.fridayDate,
         dayTotal:0,
+        listBuilding: ObjectoDos.friidayListBuilding
       },
       {
         day: "Sat",
         hours: ObjectoDos.saturday,
         date: ObjectoDos.saturdayDate,
         dayTotal:0,
+        listBuilding: ObjectoDos.saturdayListBuilding
       });
+
+      console.log(this.weekFirst[0].listBuilding);
 
       this.requestSecondHours.parameterId = ObjectoDos.parameterId;
       this.requestSecondHours.listTimestampId = ObjectoDos.listTimestampId;
@@ -265,6 +280,14 @@ export class ApproveHoursPage implements OnInit {
     request.fridayApprove = week[5].approve;
     request.saturdayApprove = week[6].approve;
 
+    request.sundayListBuilding = week[0].listBuilding;
+    request.mondayListBuilding = week[1].listBuilding;
+    request.tuesdayListBuilding = week[2].listBuilding;
+    request.wednesdayListBuilding = week[3].listBuilding;
+    request.thursdayListBuilding = week[4].listBuilding;
+    request.fridayListBuilding = week[5].listBuilding;;
+    request.saturdayListBuilding = week[6].listBuilding;
+
     return request;
   }
 
@@ -275,6 +298,7 @@ export class ApproveHoursPage implements OnInit {
     else{
       this.request[0] = this.setRequestHours(this.requestHours, this.weekFirst) ;
       this.request[1] = this.setRequestHours(this.requestSecondHours, this.weekSecond);
+      console.log(this.request[0].sundayListBuilding);
       console.log(this.request);
       let userName = this.getUser();
       this.apporveService.postApproveHours(this.token,this.request,userName).subscribe(response => {

@@ -115,6 +115,7 @@ export class DetailWeek {
     listTimestampId: Array<any>;
     startWeekDate: any;
     endWeekDate: any;
+    iteration:number;
 }
 
 export class ResponseClocOut{

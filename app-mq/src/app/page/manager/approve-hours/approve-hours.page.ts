@@ -125,6 +125,7 @@ export class ApproveHoursPage implements OnInit {
       this.requestHours.parameterId = ObjectoUno.parameterId;
       this.requestHours.listTimestampId = ObjectoUno.listTimestampId;
       this.requestHours.listTimestampId[0] = 1;
+      this.requestHours.iteration = ObjectoUno.iteration;
       this.weekFirst.push({
         day: "Sun",
         hours: ObjectoUno.sunday,
@@ -235,6 +236,7 @@ export class ApproveHoursPage implements OnInit {
       this.requestSecondHours.parameterId = ObjectoDos.parameterId;
       this.requestSecondHours.listTimestampId = ObjectoDos.listTimestampId;
       this.requestSecondHours.listTimestampId[0] = 2;
+      this.requestSecondHours.iteration = ObjectoDos.iteration;
       
     });
   }

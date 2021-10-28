@@ -17,7 +17,7 @@
  </ion-header>
  
  <ion-content>
-     <div class="mq-background-gray">
+     <div class="mq-content-background-gray">
         <div class="content-staff">
           <span style="margin-left: 22px">Manager</span>
         </div>
@@ -43,7 +43,7 @@
         <div *ngIf="isActive">
           <div 
             *ngFor="let employee of listEmployee"
-            class="content-card-staff"
+            class="content-card-staff mq-background-gray"
           >
           <card-staff 
             class="card-size"

@@ -15,13 +15,13 @@
 <ion-content>
   <div *ngIf = "isState(state);then esStaff else esBuilding"></div>
   <ng-template #esStaff>
-    <div class="mq-background-gray">
+    <div class="mq-content-background-gray">
       <div class="content-staff">
         <span>Staff</span>
       </div>
       <div 
         *ngFor="let profile of listEmployes"
-        class="content-cards"
+        class="content-cards mq-background-gray"
       >
         <card-staff 
           class="card-size"
@@ -64,7 +64,7 @@
   </ng-template>
   <ng-template #esBuilding>
     <div class="mq-background-gray"> 
-      <div style="display: flex;justify-content: space-between;margin-left: 22px;margin-right: 22px;padding-top: 20px;">
+      <div class="mq-background-gray" style="display: flex;justify-content: space-between;margin-left: 22px;margin-right: 22px;padding-top: 20px;">
         <span>Building</span>
       </div>
       <div 

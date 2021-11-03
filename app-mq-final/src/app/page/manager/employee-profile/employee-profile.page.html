@@ -1,0 +1,81 @@
+<ion-content class="mq-background-color-gray">
+  <ion-grid class="mq-content mq-background-color-gray ion-no-padding">
+    <ion-row>
+      <ion-col class="ion-no-padding">
+       <card-profile
+        [photo] = "employee.photo" 
+        [nameUser] = "employee.name"
+        [roleUser] = "employee.role" 
+        [positionUser] = "employee.position"
+        profile = "active" 
+       >
+       <ion-buttons 
+          slot="start" 
+          class="ion-padding-start"
+          button-back
+        >
+          <ion-back-button 
+            mode = "ios"
+            text="" 
+            defaultHref="/"
+            color="light"
+          >
+          </ion-back-button>  
+        </ion-buttons>
+      <ion-buttons 
+          slot="end" 
+          class="ion-padding-end"
+          button-profile
+        >
+        <ion-button (click)="goManager()">
+          <ion-icon  color="light" name="person" ></ion-icon>
+        </ion-button>
+      </ion-buttons>
+       <total-hours 
+        [hours] = "employee.hours"
+        component-hours
+      >
+      </total-hours>
+      <data-time
+        colorText = "#ffff!important"
+        component-data-time
+      >
+      </data-time>
+       </card-profile>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="ion-no-padding">
+        <div class="mq-text-color-gray approve mq-background-gray">
+          <span>Approve hours</span>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col 
+      class="mq-background-color-gray content-card">
+        <ion-card class="content-hours ion-align-items-center mq-dflex">
+          <div class="mq-dflex mq-flex-direcciont-column" style="width: 100%;padding-left: 1rem;">
+            <span class="mq-text-color-gray mq-font-bold mq-text-building">Weekly Total Hours</span>
+          </div>
+          <div>
+            <ion-buttons slot="end" (click)="goApproveHours()">
+              <ion-button style="padding-right: 1px;">
+                <span class="mq-font-bold" style="padding-right: 1rem;color:black">{{employee.weeklyTotalHours | number:'1.0-1'}} HOURS</span>
+                <ion-icon role="button" name="chevron-forward-outline" style="font-size:25px;color:black "></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="padding: 0rem;">
+        <div class="content-button">
+          <ion-button class="tracking-button mq-font-bold" (click)="tracking()">TRACKING</ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<tab [rol]="manager.role" style="border-top: 10px solid #EBEBEB!important;"></tab>

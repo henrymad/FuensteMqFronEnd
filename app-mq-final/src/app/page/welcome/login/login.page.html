@@ -1,0 +1,43 @@
+<ion-content>
+  <div class="welcom-img">
+    <ion-button 
+      color="#0514AF" 
+      style="margin-top: 1rem;"
+    >
+      <ion-back-button 
+        mode = "ios"
+        text="" 
+        defaultHref="/"
+        color="light"
+      >
+      </ion-back-button>  
+    </ion-button>
+      <div class="welcome-content">
+        <span class="letter-welcome mq-font-bold">WELCOME</span>
+        <ion-item class="ion-margin-bottom content-input"  color="button-login">
+          <ion-icon name="person-circle-outline" style="padding-right: 5px"></ion-icon>
+          <ion-input type="text" [(ngModel)]="employee.userName" placeholder="Username"></ion-input>
+        </ion-item>
+        <ion-item class="ion-margin-bottom content-input" color="button-login">
+          <ion-icon name="lock-closed-outline" style="padding-right: 5px" ></ion-icon>
+          <ion-input type="password" [(ngModel)]="employee.password" placeholder="Password"></ion-input>
+        </ion-item>
+        <br>
+        <ion-button 
+          type="submit"
+          [ngClass]="{'button-style mq-font-bold':unActive(), 'button-style-activate mq-font-bold':activate()}"  
+          expand="block" 
+          fill="outline" 
+          (click)="login(employee.userName, employee.password)"
+        > 
+          LOGIN
+        </ion-button>
+      </div>
+      <br>
+      <br>
+      <br>
+      <div class="admin-style">
+        <span class="letter-admin">Create account</span>
+      </div>
+  </div>
+</ion-content>

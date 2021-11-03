@@ -1,0 +1,142 @@
+<ion-header>
+  <ion-toolbar mode="ios" class="mq-toolbar-small">
+    <ion-buttons slot="start" class="ion-padding-start">
+      <ion-back-button 
+        mode = "ios"
+        text="" 
+        defaultHref="/"
+        color="light"
+      >
+      </ion-back-button>  
+    </ion-buttons>
+    <ion-title style="color: #ffff;font-size: 14px;">Approve Hours</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="ion-no-padding">
+    <ion-row  class="ion-no-padding">
+      <ion-col class="ion-no-padding header-table">
+        Day
+      </ion-col>
+      <ion-col  class="ion-no-padding header-table">
+        Date
+      </ion-col>
+      <ion-col  class="ion-no-padding header-table">
+        Hours
+      </ion-col>
+      <ion-col  class="ion-no-padding header-table icons">
+        <div>
+          <img 
+              src="../../../../assets/icon/checkbox.svg" 
+              alt="checkbox"
+              style="width: 22px;"
+            />
+        </div>
+        <div>
+          <img 
+          src="../../../../assets/icon/close-circle.svg" 
+          alt="checkbox"
+          style="width: 24px;"
+        />
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row  class="ion-no-padding" *ngFor = "let week of weekFirst">
+      <ion-col class="ion-no-padding"> 
+        <div  class="row-day">
+          <span class="size-data">{{week.day}}</span>
+        </div>
+      </ion-col>
+      <ion-col class="ion-no-padding"> 
+        <div class="row-date">
+          <span class="size-data">{{week.date}}</span>
+        </div>
+      </ion-col>
+      <ion-col class="ion-no-padding"> 
+        <div class="row-hours">
+          <span class="size-data mq-font-bold" >{{week.hours}} HOURS</span>
+        </div>
+      </ion-col>
+      <ion-col class="ion-no-padding"> 
+        <div class="row-check">
+          <ion-radio-group mode="md" (ionChange)="setApprove($event, week.date)" class="content-radio-button">
+            <ion-radio value="Y"></ion-radio>
+            <ion-radio value="N"></ion-radio>
+          </ion-radio-group>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-no-padding" style="border-bottom: 1rem solid #ffff;">
+      <ion-col class="ion-no-padding weekly-row" size="9">
+        <span class="size-weekly-total">
+          Weekly Total Hours
+        </span>
+        
+      </ion-col>
+      <ion-col size="3" class="total-hours-row">
+        <span style="color: #ffff;font-size: 14px;"class="mq-font-bold">{{sumFirstTable}} HOURS</span>
+      </ion-col>
+    </ion-row>
+    <ion-row  class="ion-no-padding" *ngFor = "let week of  weekSecond">
+      <ion-col class="ion-no-padding"> 
+        <div  class="row-day">
+          <span class="size-data">{{week.day}}</span>
+        </div>
+      </ion-col>
+      <ion-col class="ion-no-padding"> 
+        <div class="row-date">
+          <span class="size-data">{{week.date}}</span>
+        </div>
+      </ion-col>
+      <ion-col class="ion-no-padding"> 
+        <div class="row-hours">
+          <span class="size-data mq-font-bold" >{{week.hours}} HOURS</span>
+        </div>
+      </ion-col>
+      <ion-col class="ion-no-padding"> 
+        <div class="row-check">
+          <ion-radio-group mode="md" (ionChange)="setApproveSecond($event, week.date)" class="content-radio-button">
+            <ion-radio value="Y"></ion-radio>
+            <ion-radio value="N"></ion-radio>
+          </ion-radio-group>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-no-padding">
+      <ion-col class="ion-no-padding weekly-row" size="9">
+        <span class="size-weekly-total">
+          Weekly Total Hours
+        </span>
+        
+      </ion-col>
+      <ion-col size="3" class="total-hours-row">
+        <span style="color: #ffff;font-size: 14px;"class="mq-font-bold" >{{sumSecondTable}} HOURS</span>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-no-padding">
+      <ion-col class="ion-no-padding combined-total-hours-row" size="9">
+        <span class="mq-font-bold size-weekly-total">
+          Combined Total Hours
+        </span>
+        
+      </ion-col>
+      <ion-col size="3" class="combined-hours-row">
+        <span style="color: #ffff;font-size: 14px;"class="mq-font-bold" >{{sumTotal}} HOURS</span>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-no-padding"> 
+      <ion-col class="ion-no-padding">
+        <ion-button 
+          class="mq-font-bold" 
+          color="light" 
+          expand="block" 
+          (click)="postApproveHoursService()"
+        >
+          APPROVE
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid> 
+</ion-content>
+<tab [rol]="manager.role"></tab>

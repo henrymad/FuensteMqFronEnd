@@ -1,0 +1,70 @@
+.content {
+  padding-top: 30px; 
+  display: flex;
+  flex-direction: column;
+}
+
+.card-small {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  height: 60px;
+  margin-left: 23px;
+  margin-right: 22px;
+  border-radius: 10px;
+  margin-bottom: 6px;
+  margin-top: 6px;
+}
+
+.content-combo-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  justify-content: space-around;
+}
+
+.content-combo-box .combo-box{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  margin-left: 10px;
+}
+
+.label{
+  font-size: 14px;
+  font-weight: 600;
+  padding-left: 5px;
+}
+
+.content-select {
+  padding-right: 20px;
+  width: 100%;
+}
+
+.content-button-start-shift {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  width: 127px;
+  height: 127px;
+  border-radius: 50%;
+  background: white;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-start-shift {
+  width: 103px!important;
+  height: 103px!important;
+  --border-radius:50% ;
+}
+
+p {
+  font-size: 22px;
+  padding: 0;
+  margin: 0;
+  font-weight: bold;
+}

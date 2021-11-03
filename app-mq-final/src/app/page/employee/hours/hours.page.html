@@ -1,0 +1,36 @@
+<ion-content>
+  <div class="content-data ">
+    <div class="content-header">
+      <ion-buttons class="content-button">
+        <ion-back-button 
+          mode = "ios"
+          text="" 
+          defaultHref="/"
+          color="light"
+        >
+        </ion-back-button>
+      </ion-buttons>
+      <span class="mq-font-bold text-time">Time management</span>
+    </div>
+    <div class="text-week">
+      <span>week hours</span>
+    </div>
+    <div class="content-date-hours">
+      <hours [hours] = "weekHours"></hours>
+      <data-time
+          colorText = "#ffff!important"
+          fontSize = "84px!important"
+          lineHeight = "69px!important"
+        >
+        </data-time>
+    </div>
+  </div>
+<div *ngIf="isFirst">
+  <table-hours [weeksDetail]="firstWeek"></table-hours>
+</div>
+<div *ngIf="isSecond">
+  <table-hours [weeksDetail]="secondWeek"></table-hours>
+</div>
+</ion-content>
+
+<ion-tab-bar slot="bottom" class="mq-tab"></ion-tab-bar>

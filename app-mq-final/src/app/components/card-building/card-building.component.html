@@ -1,0 +1,14 @@
+<ion-card class="mq-card card" >
+  <img 
+    src="../../../assets/icon/Icon-awesome-building.svg" 
+    alt="Building"
+    style="margin-left: 30px;margin-right: 20px;width: 31.1px;height: 36px;"/>
+  <div style="display: flex;flex-direction: column;width: 100%;">
+    <span class="mq-text-color-gray mq-font-bold text-size-name">{{nameBuilding}}</span>
+    <span class="mq-text-color-gray tex-size">{{role | titlecase}} - {{firstName | titlecase}} {{lastName | titlecase}}</span>
+    <span class="mq-text-color-gray tex-size">{{address}} - {{city}} </span>
+  </div>
+  <div style="display: flex;flex-direction: column;">
+    <ng-content></ng-content>
+  </div>
+</ion-card>

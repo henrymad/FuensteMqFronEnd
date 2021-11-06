@@ -4,6 +4,7 @@ import { Employee } from 'src/app/class/utils';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { Storage } from '@capacitor/storage';
 import { AlertController } from '@ionic/angular';
+import { AVATAR_DEFAULT } from 'src/app/constants/constants';
 
 @Component({
   selector: 'app-employee-profile',
@@ -42,6 +43,9 @@ export class EmployeeProfilePage implements OnInit {
         this.employee.role =  response.data.role;
         this.employee.position = this.employee.upperCaseEmployee(response.data.position);
         this.employee.hours = response.data.hours;
+        if(response.data.avatar == null){
+          this.employee.photo = AVATAR_DEFAULT;
+        }
         this.employee.photo = this.employee.convertBase64ToJpg(response.data.avatar);
         this.employee.weekHours = response.data.weekHours;
         this.employee.weeklyTotalHours = response.data.weeklyTotalHours;

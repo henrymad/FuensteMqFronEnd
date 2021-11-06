@@ -4,6 +4,7 @@ import { Storage } from '@capacitor/storage';
 import { Employee } from 'src/app/class/utils';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { BuildingService } from 'src/app/services/building.service';
+import { AVATAR_DEFAULT } from 'src/app/constants/constants';
 
 @Component({
   selector: 'app-staff-building',
@@ -39,6 +40,9 @@ export class StaffBuildingPage implements OnInit {
         console.log(response.data);
         for(let employe of response.data){
           if(employe.role.nameRole == "employee"){
+            if(employe.avatar == null){
+              employe.avatar = AVATAR_DEFAULT;
+            }
             employe.avatar = this.employee.convertBase64ToJpg(employe.avatar);
             this.listEmployes.push(employe);
           }

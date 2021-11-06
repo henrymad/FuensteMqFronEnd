@@ -70,6 +70,7 @@ export class RegisterPage implements OnInit {
       this.request.password = this.user.password;
       this.request.rolName = this.user.rol;
       this.request.positionId = this.user.position;
+      this.request.avatar = null;
       this.registerService.create(this.request, this.token).subscribe(
         response => {
           if(response.status == 200){

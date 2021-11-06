@@ -4,6 +4,7 @@ import { Employee, ResponseClocOut, ResponseEvent } from 'src/app/class/utils';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { Storage } from '@capacitor/storage';
 import { Observable } from 'rxjs';
+import { AVATAR_DEFAULT } from 'src/app/constants/constants';
 
 
 @Component({
@@ -27,6 +28,8 @@ export class EmployeePage implements OnInit {
 
   ngOnInit() {
     this.setEmployee();
+    let date = new Date();
+    console.log(date);
   }
 
   async setEmployee(){
@@ -36,10 +39,14 @@ export class EmployeePage implements OnInit {
     this.employee.id = Number(this.getUser());
     this.employeeService.getInformationUser(this.employee.userName, this.employee.token, this.employee.role)
       .subscribe(response => {
+        console.log(response.data);
         this.employee.name = response.data.name;
         this.employee.role = this.employee.upperCaseEmployee(response.data.role);
         this.employee.position = this.employee.upperCaseEmployee(response.data.position);
         this.employee.hours = response.data.hours;
+        if(this.employee.photo ==  null){
+          this.employee.photo = AVATAR_DEFAULT;
+        }
         this.employee.photo = this.employee.convertBase64ToJpg(response.data.avatar);
         this.employee.weekHours = response.data.weekHours;
         this.employee.weeklyTotalHours = response.data.weeklyTotalHours;
@@ -63,13 +70,19 @@ export class EmployeePage implements OnInit {
   }
 
   start(state:boolean):void {
-    this.statusStart = false;
-    this.statusIn = state;
+    if(state){
+      this.statusStart = false;
+      this.statusIn = state;
+    }
+    else{
+      this.statusStart = false;
+      this.statusOut = true;;
+    }
   }
 
   async startShift(data: ResponseEvent){
     const state:string = await this.getState();
-    if(state == "true"){
+    if(state == "start"){
       this.statusIn = false;
       this.statusOut = data.status;
       this.dataClockOut = data;
@@ -79,10 +92,11 @@ export class EmployeePage implements OnInit {
 
   async endShift(result:any){
     const state:string = await this.getState();
-    if(state == "true"){
+    if(state == "end"){
       this.statusOut = false;
       this.statusStart = result.state;
       this.employee.hoursWorked = result.data;
+      console.log(result.data);
       this.employee.isMensageActive = true;
       this.messange();
     }
@@ -105,6 +119,11 @@ export class EmployeePage implements OnInit {
       this.setEmployee();
       event.target.complete();
     }, 1000);
+  }
+
+  hoursWorked(week:any, weekNumber:number):number{
+
+    return null;
   }
 
 }

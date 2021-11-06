@@ -72,10 +72,11 @@ export class ClockInComponent implements OnInit {
     console.log(this.data.responseDTO);
     this.clockInService.clockIn(this.data.responseDTO, this.token)
       .subscribe(response => {
-        const STATE:string = "true";
+        const STATE:string = "start";
         this.setState(STATE);
         this.data.timestampId = response.data.timestampId;
         this.data.status = true;
+        this.setDataStartShift(this.data);
         this.dataEvent.emit(this.data);
       }); 
   }
@@ -84,6 +85,13 @@ export class ClockInComponent implements OnInit {
     const state = await Storage.set({
       key: 'state',
       value: valueState
+    });
+  }
+  
+  async setDataStartShift(pyload:ResponseEvent){
+    const data = await Storage.set({
+      key: 'data',
+      value: JSON.stringify(pyload)
     });
   }
 }

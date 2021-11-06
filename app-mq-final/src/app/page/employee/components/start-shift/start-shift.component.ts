@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Storage } from '@capacitor/storage';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'start-shift',
@@ -16,9 +17,12 @@ export class StartShiftComponent implements OnInit {
 
   @Output() stateEvent = new EventEmitter<boolean>();
 
-  constructor(private router: Router) { }
+  constructor(
+      private router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.lastState();
+  }
 
   goCurrentWeek():void{
     const WEEK_CURRENT:string = "weekcurrent";
@@ -28,6 +32,18 @@ export class StartShiftComponent implements OnInit {
   goWeeklyTotalHours():void{
     const TOTAL:string = "total";
     this.router.navigate([`employee/${this.userName}/hours/${TOTAL}`]);
+  }
+
+  async lastState() {
+    const state = await this.getState();
+    if(state == "start"){
+      this.stateEvent.emit(false);
+    }
+  }
+
+  async getState(): Promise<string>{
+    const state = await Storage.get({key: 'state'});
+    return state.value;
   }
 
   start():void {
@@ -42,6 +58,8 @@ export class StartShiftComponent implements OnInit {
       value: valueState
     });
   }
+
+  
 
 
 }

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from 'src/app/class/utils';
 import { Storage } from '@capacitor/storage';
 import { BuildingService } from 'src/app/services/building.service';
+import { AVATAR_DEFAULT } from 'src/app/constants/constants';
 
 @Component({
   selector: 'app-building-detail',
@@ -42,6 +43,13 @@ export class BuildingDetailPage implements OnInit {
         this.manager.lastName = manager.lastname;
         this.manager.role = manager.role;
         this.manager.userName = manager.username
+        this.manager.photo = this.manager.convertBase64ToJpg(manager.avatar);
+        employees.forEach(element => {
+          if(element.avatar == null){
+            element.avatar = AVATAR_DEFAULT;
+          }
+          element.avatar = this.manager.convertBase64ToJpg(element.avatar);
+        });
         this.listEmployee.push(...employees);
         if(employees.length === 0){
           this.isActive = false;
@@ -50,7 +58,6 @@ export class BuildingDetailPage implements OnInit {
         console.log(manager);
         console.log(this.listEmployee);
       })
-
   }
 
   getNameBuilding(){

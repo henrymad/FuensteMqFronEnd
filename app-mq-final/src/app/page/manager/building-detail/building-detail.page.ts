@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from 'src/app/class/utils';
 import { Storage } from '@capacitor/storage';
 import { BuildingService } from 'src/app/services/building.service';
+import { AVATAR_DEFAULT } from 'src/app/constants/constants';
 
 @Component({
   selector: 'app-building-detail',
@@ -31,7 +32,8 @@ export class BuildingDetailPage implements OnInit {
   }
 
   async getBuildingEmployee(){
-    this.idBuilding  = Number(await this.getBuildingId());
+    this.idBuilding = Number(await this.getBuildingId());
+    console.log(this.idBuilding);
     let token = await this.getToken();
     this.buildingService.getEmployeeBuilding(token, this.idBuilding)
       .subscribe(result => {
@@ -40,12 +42,21 @@ export class BuildingDetailPage implements OnInit {
         this.manager.firstName = manager.firstName;
         this.manager.lastName = manager.lastname;
         this.manager.role = manager.role;
-        this.manager.userName = manager.username;
+        this.manager.userName = manager.username
+        this.manager.photo = this.manager.convertBase64ToJpg(manager.avatar);
+        employees.forEach(element => {
+          if(element.avatar == null){
+            element.avatar = AVATAR_DEFAULT;
+          }
+          element.avatar = this.manager.convertBase64ToJpg(element.avatar);
+        });
         this.listEmployee.push(...employees);
         if(employees.length === 0){
           this.isActive = false;
           this.listEmployee.push(1);
         }
+        console.log(manager);
+        console.log(this.listEmployee);
       })
 
   }

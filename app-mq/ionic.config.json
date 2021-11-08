@@ -1,7 +1,0 @@
-{
-  "name": "app-mq",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}

@@ -16,6 +16,8 @@ export class DataTimeComponent implements OnInit {
     this.time = new Date();
   }
 
-  ngOnInit() {}
-
+  ngOnInit() {
+    this.time = new Date();
+  }
+  
 }

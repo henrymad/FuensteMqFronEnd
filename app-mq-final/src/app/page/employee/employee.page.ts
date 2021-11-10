@@ -30,7 +30,6 @@ export class EmployeePage implements OnInit {
 
   ngOnInit() {
     this.setEmployee();
-    this.time = new Date();
   }
 
   async setEmployee(){
@@ -118,7 +117,6 @@ export class EmployeePage implements OnInit {
   doRefresh(event) {
     setTimeout(() => {
       this.setEmployee();
-      this.time = new Date();
       event.target.complete();
     }, 1000);
   }

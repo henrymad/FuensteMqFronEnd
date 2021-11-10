@@ -11,22 +11,14 @@ export class DataTimeComponent implements OnInit {
   @Input() colorText:string;
   @Input() fontSize:string;
   @Input() lineHeight:string;
-  @Input() timeEmployee:Date = null;
 
   constructor() {
   }
 
   ngOnInit() {
-    this.setTime();
-  }
-
-  setTime(){
-    if(this.timeEmployee == null){
+    this.time = new Date();
+    setInterval(()=>{
       this.time = new Date();
-    }
-    else{
-      this.time = this.timeEmployee;
-    }
+    },1000)
   }
-  
 }

@@ -20,6 +20,8 @@ export class EmployeePage implements OnInit {
   statusStart: boolean = true;
   statusIn: boolean = false;
   statusOut:boolean = false;
+
+  time: Date;
  
   constructor(
     private employeeService: EmployeeService,
@@ -28,8 +30,7 @@ export class EmployeePage implements OnInit {
 
   ngOnInit() {
     this.setEmployee();
-    let date = new Date();
-    console.log(date);
+    this.time = new Date();
   }
 
   async setEmployee(){
@@ -117,6 +118,7 @@ export class EmployeePage implements OnInit {
   doRefresh(event) {
     setTimeout(() => {
       this.setEmployee();
+      this.time = new Date();
       event.target.complete();
     }, 1000);
   }
